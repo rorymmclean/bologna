@@ -25,7 +25,8 @@ var dataset = [
   {ts: 20190102140410, metric: 143},
   {ts: 20190102140420, metric: 153},
   {ts: 20190102140430, metric: 173},
-  {ts: 20190102140440, metric: 143}
+  {ts: 20190102140440, metric: 143},
+  {ts: 20190102140540, metric: 120}
 ];
 
 var parseTime = d3.timeParse("%Y%m%d%H%M%S");
@@ -60,7 +61,7 @@ var data = dataset
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
     width = parseInt(d3.select("#my_dataviz_1").style('width'), 10);
     width = width - margin.left - margin.right,
-    height = 250 - margin.top - margin.bottom;
+    height = 200 - margin.top - margin.bottom;
     
 // append the svg1 object to the body of the page
 var svg1 = d3.select("#my_dataviz_1")
