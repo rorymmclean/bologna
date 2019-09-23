@@ -4,10 +4,23 @@
  * Module dependencies.
  */
 
+//var Promise = require('promise')
+//var fs = require('fs')
+
 var app = require('../app')
 var debug = require('debug')('bologna:server')
 var http = require('http')
 
+//var data = 'New File Contents'
+/*
+function test1 () {
+  return new Promise(function (resolve, reject) {
+    for (var i = 0; i < 200000; i++) {
+      fs.writeFileSync('temp2.txt', data)
+    }
+  })
+}
+*/
 /**
  * Get port from environment and store in Express.
  */
@@ -86,3 +99,13 @@ function onListening () {
     : 'port ' + addr.port
   debug('Listening on ' + bind)
 }
+
+/*
+function TestCaller () {
+  test1().then(function (result) {
+    console.log('Finished Test')
+  })
+}
+
+TestCaller()
+*/
