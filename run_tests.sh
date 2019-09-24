@@ -54,4 +54,6 @@ if [ "$RunType" == "3" ] || [ "$RunType" == "TEST3.JS" ] || [ "$RunType" == "TES
   done
 fi
 
+node stats.js & 
+
 # npm start 
