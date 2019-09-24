@@ -1,3 +1,7 @@
+node stats.js & 
+
+# npm start 
+
 if [[ ! -z "$SB_TEST" ]]; then
   RunType=$SB_TEST 
 elif [[ ! -z "$sb_test" ]]; then
@@ -27,6 +31,7 @@ if [ "$RunType" == "1" ] || [ "$RunType" == "TEST1.JS" ] || [ "$RunType" == "TES
       break
     fi
     COUNTER=$[$COUNTER +1]
+    sleep 60s
   done
 fi
 
@@ -39,6 +44,7 @@ if [ "$RunType" == "2" ] || [ "$RunType" == "TEST2.JS" ] || [ "$RunType" == "TES
       break
     fi
     COUNTER=$[$COUNTER +1]
+    sleep 60s
   done
 fi
 
@@ -51,9 +57,6 @@ if [ "$RunType" == "3" ] || [ "$RunType" == "TEST3.JS" ] || [ "$RunType" == "TES
       break
     fi
     COUNTER=$[$COUNTER +1]
+    sleep 60s
   done
 fi
-
-node stats.js & 
-
-# npm start 

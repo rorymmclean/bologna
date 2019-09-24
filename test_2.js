@@ -8,10 +8,6 @@ if (testloop != null) {
   testloop = 1    
 }
 
-function randomInt(low, high) {
-  return Math.floor(Math.random() * (high - low) + low)
-}
-
 var counter = 0
 var data = ''
 
@@ -43,7 +39,7 @@ function myreadFileSync (filePath) {
 
 while (1) {
   // counter++
-  data = randomstring.generate(randomInt(1000000, 6000000))
+  data = randomstring.generate(4000)
   fs.writeFileSync(homedir + '/TESTMNT/temp' + testloop + '.txt', data)
   sleep(redisSpeed)
   myreadFileSync(homedir + '/TESTMNT/temp' + testloop + '.txt')
