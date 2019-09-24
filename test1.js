@@ -5,8 +5,6 @@ var sleep = require('system-sleep')
 
 var datasize = 4000000
 var testloop = process.argv[2]
-// var os = require('os')
-// var testhost = os.hostname()
 var data = '#'.repeat(datasize)
 // var MyCounter = 0
 // var firstTime = moment()
@@ -23,7 +21,7 @@ if (process.env.SB_PORT) {
 } else if (process.env.sb_port) {
   redisPort = process.env.sb_port
 }
-
+ 
 var redisIP = '127.0.0.1'
 if (process.env.SB_IP) {
   redisIP = process.env.IP
