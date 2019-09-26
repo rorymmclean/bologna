@@ -1,6 +1,6 @@
 node stats.js & 
 
-npm start 
+npm start & 
 
 if [[ ! -z "$SB_TEST" ]]; then
   RunType=${SB_TEST//[!0-9]/}
@@ -25,7 +25,7 @@ COUNTER=1
 if [ "$RunType" == "1" ]; then
   while :
   do
-    node test1.js $COUNTER & 
+    node test_1.js $COUNTER & 
     if [ $COUNTER == $Runloop ];
     then
       break

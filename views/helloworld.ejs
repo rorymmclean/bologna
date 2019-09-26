@@ -24,7 +24,7 @@ Refresh Rate:
     <option value='1800' <%= drfvalue == '1800' ? 'selected' : ''%>>1800</option>
     <option value='3600' <%= drfvalue == '3600' ? 'selected' : ''%>>3600</option>
   </select>
-  &nbsp;&nbsp;Datapoints:
+  &nbsp;&nbsp;Datapoints: 
   <select id ='datapoints' name='datapoints' value=<%= datapoints %> onchange="this.form.submit()" >
       <option value='20' <%= datapoints == '20' ? 'selected' : ''%>>20</option>
       <option value='50' <%= datapoints == '50' ? 'selected' : ''%>>50</option>
@@ -43,10 +43,10 @@ Refresh Rate:
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz_1">
   <form method="post">
-    <select id ='server1' name='server1' value=<%= server1 %> onchange="this.form.submit()" >
-      <option value='Rorys-MacBook-Pro.local' <%= server1 == 'Rorys-MacBook-Pro.local' ? 'selected' : ''%>>Rorys-MacBook-Pro.local</option>
+    <select id ='server1' name='server1' value='<%= server1 %>' onchange="this.form.submit()" >
+      <%- serverlist1 %>
     </select>
-    <select id ='metric1' name='metric1' value=<%= metric1 %> onchange="this.form.submit()" >
+    <select id ='metric1' name='metric1' value='<%= metric1 %>' onchange="this.form.submit()" >
       <option value='IORx' <%= metric1 == 'IORx' ? 'selected' : ''%>>IORx - I/Os Reads</option>
       <option value='IOWx' <%= metric1 == 'IOWx' ? 'selected' : ''%>>IOWx - I/Os Writes</option>
       <option value='IOTx' <%= metric1 == 'IOTx' ? 'selected' : ''%>>IOTx - I/Os Total</option>
@@ -69,10 +69,10 @@ Refresh Rate:
 </div>
 <div id="my_dataviz_2">
   <form method="post">
-    <select id ='server2' name='server2' value=<%= server2 %> onchange="this.form.submit()" >
-      <option value='Rorys-MacBook-Pro.local' <%= server2 == 'Rorys-MacBook-Pro.local' ? 'selected' : ''%>> Rorys-MacBook-Pro.local</option>
+    <select id ='server2' name='server2' value='<%= server2 %>' onchange="this.form.submit()" >
+      <%- serverlist2 %>
     </select>
-    <select id ='metric2' name='metric2' value=<%= metric2 %> onchange="this.form.submit()" >
+    <select id ='metric2' name='metric2' value='<%= metric2 %>' onchange="this.form.submit()" >
         <option value='IORx' <%= metric2 == 'IORx' ? 'selected' : ''%>>IORx - I/Os Reads</option>
         <option value='IOWx' <%= metric2 == 'IOWx' ? 'selected' : ''%>>IOWx - I/Os Writes</option>
         <option value='IOTx' <%= metric2 == 'IOTx' ? 'selected' : ''%>>IOTx - I/Os Total</option>
@@ -94,10 +94,10 @@ Refresh Rate:
 </div>
 <div id="my_dataviz_3">
   <form method="post">
-    <select id ='server3' name='server3' value=<%= server3 %> onchange="this.form.submit()" >
-      <option value='Rorys-MacBook-Pro.local' <%= server3 == 'Rorys-MacBook-Pro.local' ? 'selected' : ''%>> Rorys-MacBook-Pro.local</option>
+    <select id ='server3' name='server3' value='<%= server3 %>' onchange="this.form.submit()" >
+      <%- serverlist3 %>
     </select>
-    <select id ='metric3' name='metric3' value=<%= metric3 %> onchange="this.form.submit()" >
+    <select id ='metric3' name='metric3' value='<%= metric3 %>' onchange="this.form.submit()" >
         <option value='IORx' <%= metric3 == 'IORx' ? 'selected' : ''%>>IORx - I/Os Reads</option>
         <option value='IOWx' <%= metric3 == 'IOWx' ? 'selected' : ''%>>IOWx - I/Os Writes</option>
         <option value='IOTx' <%= metric3 == 'IOTx' ? 'selected' : ''%>>IOTx - I/Os Total</option>

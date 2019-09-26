@@ -16,9 +16,9 @@ if (process.env.SB_PORT) {
 
 var redisIP = '127.0.0.1'
 if (process.env.SB_IP) {
-  redisIP = process.env.IP
+  redisIP = process.env.SB_IP
 } else if (process.env.sb_ip) {
-  redisIP = process.env.ip
+  redisIP = process.env.sb_ip
 }
 
 console.log(redisPort)

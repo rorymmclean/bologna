@@ -3,10 +3,15 @@ var sleep = require('system-sleep')
 var randomstring = require('randomstring')
 
 const homedir = require('os').homedir()
-var testloop = process.argv[2]
-if (testloop != null) {
-  testloop = 1
+var testpath = homedir+'/TESTMNT/'
+if (process.env.SB_PATH) {
+  testpath = process.env.SB_PATH
+} else if (process.env.sb_path) {
+  testpath = process.env.sb_path
 }
+
+var testloop = process.argv[2]
+if (testloop == null) { testloop = 1 }
 
 var data = ''
 
@@ -16,7 +21,7 @@ var redisSpeed = 10
 if (process.env.SB_SLEEP) {
   redisSpeed = process.env.SB_SLEEP
 } else if (process.env.sb_sleep) {
-  redisSpeed = process.env.SB_SLEEP
+  redisSpeed = process.env.sb_sleep
 }
 
 console.log(redisSpeed)
@@ -34,10 +39,11 @@ function myreadFileSync (filePath) {
   fs.closeSync(fd)
 }
 
+data = randomstring.generate(4000)
+
 while (1) {
-  data = randomstring.generate(4000)
-  fs.writeFileSync(homedir + '/TESTMNT/temp' + testloop + '.txt', data)
+  fs.writeFileSync(testpath + 'temp_2_' + testloop + '.txt', data)
   sleep(redisSpeed)
-  myreadFileSync(homedir + '/TESTMNT/temp' + testloop + '.txt')
+  myreadFileSync(testpath + 'temp_2_' + testloop + '.txt')
   sleep(redisSpeed)
 }

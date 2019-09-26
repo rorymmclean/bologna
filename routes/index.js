@@ -9,20 +9,41 @@ var data2 = ''
 var data3 = ''
 
 if (typeof drf == 'undefined') {
-  drf = 10
+  var drf = 99999999
 }
 if (typeof dpts == 'undefined') {
-  dpts = 100
+  var dpts = 100
 }
 if (typeof metrics1 == 'undefined') {
-  metrics1 = 'MemF'
+  var metrics1 = 'MemF'
 }
 if (typeof metrics2 == 'undefined') {
-  metrics2 = 'MemF'
+  var metrics2 = 'MemF'
 }
 if (typeof metrics3 == 'undefined') {
-  metrics3 = 'MemF'
+  var metrics3 = 'MemF'
 }
+if (typeof serverlist1 == 'undefined') {
+  var serverlist1 = ''
+}
+if (typeof serverlist2 == 'undefined') {
+  var serverlist2 = ''
+}
+if (typeof serverlist3 == 'undefined') {
+  var serverlist3 = ''
+}
+if (typeof server1 == 'undefined') {
+  var server1 = 'L-'+testhost
+}
+if (typeof server2 == 'undefined') {
+  var server2 = 'L-'+testhost
+}
+if (typeof server3 == 'undefined') {
+  var server3 = 'L-'+testhost
+}
+serverlist1 = ''
+serverlist2 = ''
+serverlist3 = ''
 
 var redisPort = 6379
 if (process.env.SB_PORT) {
@@ -33,9 +54,9 @@ if (process.env.SB_PORT) {
 
 var redisIP = '127.0.0.1'
 if (process.env.SB_IP) {
-  redisIP = process.env.IP
+  redisIP = process.env.SB_IP
 } else if (process.env.sb_ip) {
-  redisIP = process.env.ip
+  redisIP = process.env.sb_ip
 }
 
 console.log(redisPort)
@@ -49,7 +70,7 @@ client.on('error', function (err) {
 
 client.on('connect', function () {
   console.log('connected to ' + redisIP + ':' + redisPort)
-})
+});  
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -76,26 +97,51 @@ router.post('/', function(req, res, next) {
 
 /* GET Hello World page. */
 router.get('/helloworld', function (req, res) {
-  client.lrange('L-Rorys-MacBook-Pro.local', -dpts, -1, function(err, reply) {
+  serverlist1t = ''
+  serverlist2t = ''
+  serverlist3t = ''
+  client.keys('L-*', function (err, replies) {
+    replies.forEach(function (reply, i) {
+      if (reply == server1) {
+        serverlist1t += '<option value="'+reply+'" selected>'+reply.substr(2, 999)+'</option>\n'
+      } else {
+        serverlist1t += '<option value="'+reply+'" >'+reply.substr(2, 999)+'</option>\n'
+      }
+      if (reply == server2) {
+        serverlist2t += '<option value="'+reply+'" selected>'+reply.substr(2, 999)+'</option>\n'
+      } else {
+        serverlist2t += '<option value="'+reply+'" >'+reply.substr(2, 999)+'</option>\n'
+      }
+      if (reply == server3) {
+        serverlist3t += '<option value="'+reply+'" selected>'+reply.substr(2, 999)+'</option>\n'
+      } else {
+        serverlist3t += '<option value="'+reply+'" >'+reply.substr(2, 999)+'</option>\n'
+      }
+    });
+    serverlist1 = serverlist1t
+    serverlist2 = serverlist2t
+    serverlist3 = serverlist3t
+  })
+  client.lrange(server1, -dpts, -1, function(err, reply) {
     data1 = ''
     reply.forEach (function (key,pos) {
-      client.hget('Rorys-MacBook-Pro.local:'+key,metrics1, function(err, reply) {
+      client.hget(server1.substr(2, 999)+':'+key,metrics1, function(err, reply) {
         data1 = data1 + '{ ts: '+key+', metric: '+reply+' },\n'
       })
     })
   })
-  client.lrange('L-Rorys-MacBook-Pro.local', -dpts, -1, function(err, reply) {
+  client.lrange(server2, -dpts, -1, function(err, reply) {
     data2 = ''
     reply.forEach (function (key,pos) {
-      client.hget('Rorys-MacBook-Pro.local:'+key,metrics2, function(err, reply) {
+      client.hget(server2.substr(2, 999)+':'+key,metrics2, function(err, reply) {
         data2 = data2 + '{ ts: '+key+', metric: '+reply+' },\n'
       })
     })
   })
-  client.lrange('L-Rorys-MacBook-Pro.local', -dpts, -1, function(err, reply) {
+  client.lrange(server3, -dpts, -1, function(err, reply) {
     data3 = ''
     reply.forEach (function (key,pos) {
-      client.hget('Rorys-MacBook-Pro.local:'+key,metrics3, function(err, reply) {
+      client.hget(server3.substr(2, 999)+':'+key,metrics3, function(err, reply) {
         data3 = data3 + '{ ts: '+key+', metric: '+reply+' },\n'
       })
     })
@@ -108,13 +154,19 @@ router.get('/helloworld', function (req, res) {
      pdata1: data1,
      pdata2: data2,
      pdata3: data3,
-     server1: 'Rorys-MacBook-Pro.local',
+     serverlist1: serverlist1,
+     serverlist2: serverlist2,
+     serverlist3: serverlist3,
+     server1: server1,
      metric1: metrics1,
-     server2: 'Rorys-MacBook-Pro.local',
+     server2: server2,
      metric2: metrics2,
-     server3: 'Rorys-MacBook-Pro.local',
+     server3: server3,
      metric3: metrics3
    })
+   serverlist1 = ''
+   serverlist2 = ''
+   serverlist3 = '' 
 })
 
 router.post('/helloworld', function (req, res) {
@@ -133,7 +185,16 @@ router.post('/helloworld', function (req, res) {
   if (typeof req.body.metric3 !== 'undefined') {
     metrics3 = req.body.metric3
   }
-  res.redirect('/helloworld');
+  if (typeof req.body.server1 !== 'undefined') {
+    server1 = req.body.server1
+  }
+  if (typeof req.body.server2 !== 'undefined') {
+    server2 = req.body.server2
+  }
+  if (typeof req.body.server3 !== 'undefined') {
+    server3 = req.body.server3
+  }
+  res.redirect('/helloworld')
 })
 
 module.exports = router

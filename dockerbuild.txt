@@ -1,0 +1,18 @@
+# Sliced Bologna
+#
+# VERSION               1.0
+
+FROM      ubuntu
+LABEL Description="This image is a node application that helps stress compute resources across a network."
+MAINTAINER Rory McLean rory.mclean@verizon.net
+
+RUN apt-get update
+RUN apt-get install -y nodejs npm wget unzip
+RUN wget https://github.com/rorymmclean/bologna/archive/master.zip
+RUN unzip master.zip
+RUN /bologna_master
+RUN npm install
+RUN mkdir ~/TESTMNT
+WORKDIR /bologna_master
+ENTRYPOINT [“bash”,”run_test.sh”]
+EXPOSE 3000
