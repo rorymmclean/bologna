@@ -73,30 +73,7 @@ client.on('connect', function () {
 });  
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  client.lrange('L-Rorys-MacBook-Pro.local', -200, -1, function(err, reply) {
-    data1 = ''
-    reply.forEach (function (key,pos) {
-      client.hget('Rorys-MacBook-Pro.local:'+key,'LoadU', function(err, reply) {
-        data1 = data1 + '{ ts: '+key+', metric: '+reply+' },\n'
-      })
-    })
-  })
-  res.render('index', {
-    page:'Home', 
-    menuId:'home',
-    pdata1: data1
-  })
-})
-router.post('/', function(req, res, next) {
-  res.render('index', {
-    page:'Home', 
-    menuId:'home'
-  })
-})
-
-/* GET Hello World page. */
-router.get('/helloworld', function (req, res) {
+router.get('/', function (req, res) {
   serverlist1t = ''
   serverlist2t = ''
   serverlist3t = ''
@@ -146,7 +123,7 @@ router.get('/helloworld', function (req, res) {
       })
     })
   })
-  res.render('helloworld', {
+  res.render('index', {
     page:'Home', 
     menuId:'home',
      drfvalue: drf,
@@ -169,7 +146,7 @@ router.get('/helloworld', function (req, res) {
    serverlist3 = '' 
 })
 
-router.post('/helloworld', function (req, res) {
+router.post('/', function (req, res) {
   if (typeof req.body.frddl !== 'undefined') {
     drf = req.body.frddl
   }
@@ -194,7 +171,7 @@ router.post('/helloworld', function (req, res) {
   if (typeof req.body.server3 !== 'undefined') {
     server3 = req.body.server3
   }
-  res.redirect('/helloworld')
+  res.redirect('/')
 })
 
 module.exports = router

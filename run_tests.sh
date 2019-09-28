@@ -31,7 +31,7 @@ if [ "$RunType" == "1" ]; then
       break
     fi
     COUNTER=$[$COUNTER +1]
-    sleep 60s
+    sleep 15s
   done
 fi
 

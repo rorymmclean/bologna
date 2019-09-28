@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <% include partials/head %> 
+</head>
+<body>
+<% include partials/menu %><div class="container-fluid justify-content-center text-center">    
+    <form method="post">
+    <div class="col display-4">
+        Agent#1:
+        <div class="font-weight-bold">
+            <input type=image name="up1" id="up1" src="images/triangle_up.png" width=50 height=50 onchange="this.form.submit()">
+            <%= pcount1 %>
+            <input <%= pcount1 == '0' ? 'class=invisible' : ''%> type=image name="down1" id="down1" src="images/triangle_down.png" width=50 height=50 onchange="this.form.submit()">
+        </div>    
+    </div>
+    <div class="col col display-4">
+        Agent#2: 
+        <div class="font-weight-bold">
+            <input type=image name="up2" id="up2" src="images/triangle_up.png" width=50 height=50 onchange="this.form.submit()">
+            <%= pcount2 %>
+            <input <%= pcount2 == '0' ? 'class=invisible' : ''%> type=image name="down2" id="down2" src="images/triangle_down.png" width=50 height=50 onchange="this.form.submit()">
+        </div>
+    </div>
+    <div class="col col display-4"> 
+        Agent#3:
+        <div class="font-weight-bold">
+            <input type=image name="up3" id="up3" src="images/triangle_up.png" width=50 height=50 onchange="this.form.submit()">
+            <%= pcount3 %>
+            <input <%= pcount3 == '0' ? 'class=invisible' : ''%> type=image name="down3" id="down3" src="images/triangle_down.png" width=50 height=50 onchange="this.form.submit()">
+        </div>    
+    </div>
+    <div class="col col display-4"> 
+        Agent#4:
+        <div class="font-weight-bold">
+            <input type=image name="up4" id="up4" src="images/triangle_up.png" width=50 height=50 onchange="this.form.submit()">
+            <%= pcount4 %>
+            <input <%= pcount4 == '0' ? 'class=invisible' : ''%> type=image name="down4" id="down4" src="images/triangle_down.png" width=50 height=50 onchange="this.form.submit()">
+        </div>    
+    </div>
+    </form>
+</div></body>
+<% include partials/script %>
+</html>
