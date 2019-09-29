@@ -87,7 +87,6 @@ iostat(['-x', '-m', '10']).on('data', function (err, stats) {
     diskkbs_1_write = setToZero(stats.devices[Object.keys(mydrive)[0]]['wMB/s'])
     diskkbs_1_total = diskkbs_1_read + diskkbs_1_write
     disk_1_await = setToZero(stats.devices[Object.keys(mydrive)[0]]['await'])
-    disk_1_svctm = setToZero(stats.devices[Object.keys(mydrive)[0]]['svctm'])
     disk_1_util = setToZero(stats.devices[Object.keys(mydrive)[0]]['%util'])
     disk_1_name = Object.keys(mydrive)[0]
   }
@@ -102,7 +101,6 @@ iostat(['-x', '-m', '10']).on('data', function (err, stats) {
     diskkbs_2_write = setToZero(stats.devices[Object.keys(mydrive)[1]]['wMB/s'])
     diskkbs_2_total = diskkbs_2_read + diskkbs_2_write
     disk_2_await = setToZero(stats.devices[Object.keys(mydrive)[1]]['await'])
-    disk_2_svctm = setToZero(stats.devices[Object.keys(mydrive)[1]]['svctm'])
     disk_2_util = setToZero(stats.devices[Object.keys(mydrive)[1]]['%util'])
     disk_2_name = Object.keys(mydrive)[1]
   }
@@ -117,7 +115,6 @@ iostat(['-x', '-m', '10']).on('data', function (err, stats) {
     diskkbs_3_write = setToZero(stats.devices[Object.keys(mydrive)[2]]['wMB/s'])
     diskkbs_3_total = diskkbs_3_read + diskkbs_3_write
     disk_3_await = setToZero(stats.devices[Object.keys(mydrive)[2]]['await'])
-    disk_3_svctm = setToZero(stats.devices[Object.keys(mydrive)[2]]['svctm'])
     disk_3_util = setToZero(stats.devices[Object.keys(mydrive)[2]]['%util'])
     disk_3_name = Object.keys(mydrive)[2]
   }
@@ -126,15 +123,15 @@ iostat(['-x', '-m', '10']).on('data', function (err, stats) {
   'IORx1', diskio_1_read, 'IOWx1', diskio_1_write, 'IOTx1', diskio_1_total,
   'ByRx1', diskkb_1_read, 'ByWx1', diskkb_1_write, 'ByTx1', diskkb_1_total,
   'BSRx1', diskkbs_1_read, 'BSWx1', diskkbs_1_write, 'BSTx1', diskkbs_1_total,
-  'Await1', disk_1_await, 'SvcTm1', disk_1_svctm, 'Util1', disk_1_util,
-  'IORx2', diskio_2_read, 'IOWx2', diskio_2_write, 'IOTx1', diskio_2_total,
-  'ByRx2', diskkb_2_read, 'ByWx2', diskkb_2_write, 'ByTx1', diskkb_2_total,
+  'Await1', disk_1_await, 'Util1', disk_1_util,
+  'IORx2', diskio_2_read, 'IOWx2', diskio_2_write, 'IOTx2', diskio_2_total,
+  'ByRx2', diskkb_2_read, 'ByWx2', diskkb_2_write, 'ByTx2', diskkb_2_total,
   'BSRx2', diskkbs_2_read, 'BSWx2', diskkbs_2_write, 'BSTx2', diskkbs_2_total,
-  'Await2', disk_2_await, 'SvcTm2', disk_2_svctm, 'Util2', disk_2_util,
-  'IORx2', diskio_3_read, 'IOWx2', diskio_3_write, 'IOTx1', diskio_3_total,
-  'ByRx2', diskkb_3_read, 'ByWx2', diskkb_3_write, 'ByTx1', diskkb_3_total,
-  'BSRx2', diskkbs_3_read, 'BSWx2', diskkbs_3_write, 'BSTx2', diskkbs_3_total,
-  'Await2', disk_3_await, 'SvcTm2', disk_3_svctm, 'Util2', disk_3_util,
+  'Await2', disk_2_await, 'Util2', disk_2_util,
+  'IORx3', diskio_3_read, 'IOWx3', diskio_3_write, 'IOTx3', diskio_3_total,
+  'ByRx3', diskkb_3_read, 'ByWx3', diskkb_3_write, 'ByTx3', diskkb_3_total,
+  'BSRx3', diskkbs_3_read, 'BSWx3', diskkbs_3_write, 'BSTx3', diskkbs_3_total,
+  'Await3', disk_3_await, 'Util3', disk_3_util,
   'Drive1', disk_1_name, 'Drive2', disk_2_name, 'Drive3', disk_3_name,
   'LoadU', new_load_user, 'LoadS', new_load_system, 
   'LoadI', new_load_idle, 'LoadIO', new_load_iowait,

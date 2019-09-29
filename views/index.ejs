@@ -65,6 +65,37 @@ Refresh Rate:
       <option value='NetTx' <%= metric1 == 'NetTx' ? 'selected' : ''%>>NetTx - Net Transmitted Bytes</option>
       <option value='MemU' <%= metric1 == 'MemU' ? 'selected' : ''%>>MemU - RAM User</option>
       <option value='MemF' <%= metric1 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
+      <option value='LoadIO' <%= metric1 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
+      <option value='IORx1' <%= metric1 == 'IORx1' ? 'selected' : ''%>>Disk 1 - I/Os Reads</option>
+      <option value='IOWx1' <%= metric1 == 'IOWx1' ? 'selected' : ''%>>Disk 1 - I/Os Writes</option>
+      <option value='IOTx1' <%= metric1 == 'IOTx1' ? 'selected' : ''%>>Disk 1 - I/Os Total</option>
+      <option value='ByRx1' <%= metric1 == 'ByRx1' ? 'selected' : ''%>>Disk 1 - Bytes Reads</option>
+      <option value='ByWx1' <%= metric1 == 'ByWx1' ? 'selected' : ''%>>Disk 1 - Bytes Writes</option>
+      <option value='ByTx1' <%= metric1 == 'ByTx1' ? 'selected' : ''%>>Disk 1 - Bytes Totals</option>
+      <option value='BSRx1' <%= metric1 == 'BSRx1' ? 'selected' : ''%>>Disk 1 - Bytes/Sec Reads</option>
+      <option value='BSWx1' <%= metric1 == 'BSWx1' ? 'selected' : ''%>>Disk 1 - Bytes/Sec Writes</option>
+      <option value='Await1' <%= metric1 == 'Await1' ? 'selected' : ''%>>Disk 1 - Await Time </option>
+      <option value='Util1' <%= metric1 == 'Util1' ? 'selected' : ''%>>Disk 1 - % CPU Time</option>
+      <option value='IORx2' <%= metric1 == 'IORx2' ? 'selected' : ''%>>Disk 2 - I/Os Reads</option>
+      <option value='IOWx2' <%= metric1 == 'IOWx2' ? 'selected' : ''%>>Disk 2 - I/Os Writes</option>
+      <option value='IOTx2' <%= metric1 == 'IOTx2' ? 'selected' : ''%>>Disk 2 - I/Os Total</option>
+      <option value='ByRx2' <%= metric1 == 'ByRx2' ? 'selected' : ''%>>Disk 2 - Bytes Reads</option>
+      <option value='ByWx2' <%= metric1 == 'ByWx2' ? 'selected' : ''%>>Disk 2 - Bytes Writes</option>
+      <option value='ByTx2' <%= metric1 == 'ByTx2' ? 'selected' : ''%>>Disk 2 - Bytes Totals</option>
+      <option value='BSRx2' <%= metric1 == 'BSRx2' ? 'selected' : ''%>>Disk 2 - Bytes/Sec Reads</option>
+      <option value='BSWx2' <%= metric1 == 'BSWx2' ? 'selected' : ''%>>Disk 2 - Bytes/Sec Writes</option>
+      <option value='Await2' <%= metric1 == 'Await2' ? 'selected' : ''%>>Disk 2 - Await Time </option>
+      <option value='Util2' <%= metric1 == 'Util2' ? 'selected' : ''%>>Disk 2 - % CPU Time</option>
+      <option value='IORx3' <%= metric1 == 'IORx3' ? 'selected' : ''%>>Disk 3 - I/Os Reads</option>
+      <option value='IOWx3' <%= metric1 == 'IOWx3' ? 'selected' : ''%>>Disk 3 - I/Os Writes</option>
+      <option value='IOTx3' <%= metric1 == 'IOTx3' ? 'selected' : ''%>>Disk 3 - I/Os Total</option>
+      <option value='ByRx3' <%= metric1 == 'ByRx3' ? 'selected' : ''%>>Disk 3 - Bytes Reads</option>
+      <option value='ByWx3' <%= metric1 == 'ByWx3' ? 'selected' : ''%>>Disk 3 - Bytes Writes</option>
+      <option value='ByTx3' <%= metric1 == 'ByTx3' ? 'selected' : ''%>>Disk 3 - Bytes Totals</option>
+      <option value='BSRx3' <%= metric1 == 'BSRx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Reads</option>
+      <option value='BSWx3' <%= metric1 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
+      <option value='Await3' <%= metric1 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
+      <option value='Util3' <%= metric1 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
     </select>
   </form>    
   <div ID="spinner1" class=<%= spinner1 %> >
@@ -93,7 +124,38 @@ Refresh Rate:
         <option value='NetTx' <%= metric2 == 'NetTx' ? 'selected' : ''%>>NetTx - Net Transmitted Bytes</option>
         <option value='MemU' <%= metric2 == 'MemU' ? 'selected' : ''%>>MemU - RAM User</option>
         <option value='MemF' <%= metric2 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
-      </select>
+        <option value='LoadIO' <%= metric2 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
+        <option value='IORx1' <%= metric2 == 'IORx1' ? 'selected' : ''%>>Disk 1 - I/Os Reads</option>
+        <option value='IOWx1' <%= metric2 == 'IOWx1' ? 'selected' : ''%>>Disk 1 - I/Os Writes</option>
+        <option value='IOTx1' <%= metric2 == 'IOTx1' ? 'selected' : ''%>>Disk 1 - I/Os Total</option>
+        <option value='ByRx1' <%= metric2 == 'ByRx1' ? 'selected' : ''%>>Disk 1 - Bytes Reads</option>
+        <option value='ByWx1' <%= metric2 == 'ByWx1' ? 'selected' : ''%>>Disk 1 - Bytes Writes</option>
+        <option value='ByTx1' <%= metric2 == 'ByTx1' ? 'selected' : ''%>>Disk 1 - Bytes Totals</option>
+        <option value='BSRx1' <%= metric2 == 'BSRx1' ? 'selected' : ''%>>Disk 1 - Bytes/Sec Reads</option>
+        <option value='BSWx1' <%= metric2 == 'BSWx1' ? 'selected' : ''%>>Disk 1 - Bytes/Sec Writes</option>
+        <option value='Await1' <%= metric2 == 'Await1' ? 'selected' : ''%>>Disk 1 - Await Time </option>
+        <option value='Util1' <%= metric2 == 'Util1' ? 'selected' : ''%>>Disk 1 - % CPU Time</option>
+        <option value='IORx2' <%= metric2 == 'IORx2' ? 'selected' : ''%>>Disk 2 - I/Os Reads</option>
+        <option value='IOWx2' <%= metric2 == 'IOWx2' ? 'selected' : ''%>>Disk 2 - I/Os Writes</option>
+        <option value='IOTx2' <%= metric2 == 'IOTx2' ? 'selected' : ''%>>Disk 2 - I/Os Total</option>
+        <option value='ByRx2' <%= metric2 == 'ByRx2' ? 'selected' : ''%>>Disk 2 - Bytes Reads</option>
+        <option value='ByWx2' <%= metric2 == 'ByWx2' ? 'selected' : ''%>>Disk 2 - Bytes Writes</option>
+        <option value='ByTx2' <%= metric2 == 'ByTx2' ? 'selected' : ''%>>Disk 2 - Bytes Totals</option>
+        <option value='BSRx2' <%= metric2 == 'BSRx2' ? 'selected' : ''%>>Disk 2 - Bytes/Sec Reads</option>
+        <option value='BSWx2' <%= metric2 == 'BSWx2' ? 'selected' : ''%>>Disk 2 - Bytes/Sec Writes</option>
+        <option value='Await2' <%= metric2 == 'Await2' ? 'selected' : ''%>>Disk 2 - Await Time </option>
+        <option value='Util2' <%= metric2 == 'Util2' ? 'selected' : ''%>>Disk 2 - % CPU Time</option>
+        <option value='IORx3' <%= metric2 == 'IORx3' ? 'selected' : ''%>>Disk 3 - I/Os Reads</option>
+        <option value='IOWx3' <%= metric2 == 'IOWx3' ? 'selected' : ''%>>Disk 3 - I/Os Writes</option>
+        <option value='IOTx3' <%= metric2 == 'IOTx3' ? 'selected' : ''%>>Disk 3 - I/Os Total</option>
+        <option value='ByRx3' <%= metric2 == 'ByRx3' ? 'selected' : ''%>>Disk 3 - Bytes Reads</option>
+        <option value='ByWx3' <%= metric2 == 'ByWx3' ? 'selected' : ''%>>Disk 3 - Bytes Writes</option>
+        <option value='ByTx3' <%= metric2 == 'ByTx3' ? 'selected' : ''%>>Disk 3 - Bytes Totals</option>
+        <option value='BSRx3' <%= metric2 == 'BSRx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Reads</option>
+        <option value='BSWx3' <%= metric2 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
+        <option value='Await3' <%= metric2 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
+        <option value='Util3' <%= metric2 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
+        </select>
     </form>          
     <div ID="spinner2" class=<%= spinner2 %> >
       <img src="images/spinner.gif" />
@@ -121,7 +183,38 @@ Refresh Rate:
         <option value='NetTx' <%= metric3 == 'NetTx' ? 'selected' : ''%>>NetTx - Net Transmitted Bytes</option>
         <option value='MemU' <%= metric3 == 'MemU' ? 'selected' : ''%>>MemU - RAM User</option>
         <option value='MemF' <%= metric3 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
-      </select>
+        <option value='LoadIO' <%= metric3 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
+        <option value='IORx1' <%= metric3 == 'IORx1' ? 'selected' : ''%>>Disk 1 - I/Os Reads</option>
+        <option value='IOWx1' <%= metric3 == 'IOWx1' ? 'selected' : ''%>>Disk 1 - I/Os Writes</option>
+        <option value='IOTx1' <%= metric3 == 'IOTx1' ? 'selected' : ''%>>Disk 1 - I/Os Total</option>
+        <option value='ByRx1' <%= metric3 == 'ByRx1' ? 'selected' : ''%>>Disk 1 - Bytes Reads</option>
+        <option value='ByWx1' <%= metric3 == 'ByWx1' ? 'selected' : ''%>>Disk 1 - Bytes Writes</option>
+        <option value='ByTx1' <%= metric3 == 'ByTx1' ? 'selected' : ''%>>Disk 1 - Bytes Totals</option>
+        <option value='BSRx1' <%= metric3 == 'BSRx1' ? 'selected' : ''%>>Disk 1 - Bytes/Sec Reads</option>
+        <option value='BSWx1' <%= metric3 == 'BSWx1' ? 'selected' : ''%>>Disk 1 - Bytes/Sec Writes</option>
+        <option value='Await1' <%= metric3 == 'Await1' ? 'selected' : ''%>>Disk 1 - Await Time </option>
+        <option value='Util1' <%= metric3 == 'Util1' ? 'selected' : ''%>>Disk 1 - % CPU Time</option>
+        <option value='IORx2' <%= metric3 == 'IORx2' ? 'selected' : ''%>>Disk 2 - I/Os Reads</option>
+        <option value='IOWx2' <%= metric3 == 'IOWx2' ? 'selected' : ''%>>Disk 2 - I/Os Writes</option>
+        <option value='IOTx2' <%= metric3 == 'IOTx2' ? 'selected' : ''%>>Disk 2 - I/Os Total</option>
+        <option value='ByRx2' <%= metric3 == 'ByRx2' ? 'selected' : ''%>>Disk 2 - Bytes Reads</option>
+        <option value='ByWx2' <%= metric3 == 'ByWx2' ? 'selected' : ''%>>Disk 2 - Bytes Writes</option>
+        <option value='ByTx2' <%= metric3 == 'ByTx2' ? 'selected' : ''%>>Disk 2 - Bytes Totals</option>
+        <option value='BSRx2' <%= metric3 == 'BSRx2' ? 'selected' : ''%>>Disk 2 - Bytes/Sec Reads</option>
+        <option value='BSWx2' <%= metric3 == 'BSWx2' ? 'selected' : ''%>>Disk 2 - Bytes/Sec Writes</option>
+        <option value='Await2' <%= metric3 == 'Await2' ? 'selected' : ''%>>Disk 2 - Await Time </option>
+        <option value='Util2' <%= metric3 == 'Util2' ? 'selected' : ''%>>Disk 2 - % CPU Time</option>
+        <option value='IORx3' <%= metric3 == 'IORx3' ? 'selected' : ''%>>Disk 3 - I/Os Reads</option>
+        <option value='IOWx3' <%= metric3 == 'IOWx3' ? 'selected' : ''%>>Disk 3 - I/Os Writes</option>
+        <option value='IOTx3' <%= metric3 == 'IOTx3' ? 'selected' : ''%>>Disk 3 - I/Os Total</option>
+        <option value='ByRx3' <%= metric3 == 'ByRx3' ? 'selected' : ''%>>Disk 3 - Bytes Reads</option>
+        <option value='ByWx3' <%= metric3 == 'ByWx3' ? 'selected' : ''%>>Disk 3 - Bytes Writes</option>
+        <option value='ByTx3' <%= metric3 == 'ByTx3' ? 'selected' : ''%>>Disk 3 - Bytes Totals</option>
+        <option value='BSRx3' <%= metric3 == 'BSRx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Reads</option>
+        <option value='BSWx3' <%= metric3 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
+        <option value='Await3' <%= metric3 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
+        <option value='Util3' <%= metric3 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
+        </select>
   </form>
   <div ID="spinner3" class=<%= spinner3 %> >
     <img src="images/spinner.gif" />
