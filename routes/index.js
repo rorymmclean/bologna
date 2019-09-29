@@ -7,6 +7,10 @@ var testhost = os.hostname()
 var data1 = ''
 var data2 = ''
 var data3 = ''
+var spinner1 = 'visible'
+var spinner2 = 'visible'
+var spinner3 = 'visible'
+var myrefresh = 1
 
 if (typeof drf == 'undefined') {
   var drf = 99999999
@@ -72,6 +76,33 @@ client.on('connect', function () {
   console.log('connected to ' + redisIP + ':' + redisPort)
 });  
 
+client.keys('L-*', function (err, replies) {
+  serverlist1t = ''
+  serverlist2t = ''
+  serverlist3t = ''
+  replies.forEach(function (reply, i) {
+    if (reply == server1) {
+      serverlist1t += '<option value="'+reply+'" selected>'+reply.substr(2, 999)+'</option>\n'
+    } else {
+      serverlist1t += '<option value="'+reply+'" >'+reply.substr(2, 999)+'</option>\n'
+    }
+    if (reply == server2) {
+      serverlist2t += '<option value="'+reply+'" selected>'+reply.substr(2, 999)+'</option>\n'
+    } else {
+      serverlist2t += '<option value="'+reply+'" >'+reply.substr(2, 999)+'</option>\n'
+    }
+    if (reply == server3) {
+      serverlist3t += '<option value="'+reply+'" selected>'+reply.substr(2, 999)+'</option>\n'
+    } else {
+      serverlist3t += '<option value="'+reply+'" >'+reply.substr(2, 999)+'</option>\n'
+    }
+  });
+  serverlist1 = serverlist1t
+  serverlist2 = serverlist2t
+  serverlist3 = serverlist3t
+})
+
+
 /* GET home page. */
 router.get('/', function (req, res) {
   serverlist1t = ''
@@ -106,6 +137,7 @@ router.get('/', function (req, res) {
         data1 = data1 + '{ ts: '+key+', metric: '+reply+' },\n'
       })
     })
+    spinner1 = 'invisible'
   })
   client.lrange(server2, -dpts, -1, function(err, reply) {
     data2 = ''
@@ -114,6 +146,7 @@ router.get('/', function (req, res) {
         data2 = data2 + '{ ts: '+key+', metric: '+reply+' },\n'
       })
     })
+    spinner2 = 'invisible'
   })
   client.lrange(server3, -dpts, -1, function(err, reply) {
     data3 = ''
@@ -122,7 +155,13 @@ router.get('/', function (req, res) {
         data3 = data3 + '{ ts: '+key+', metric: '+reply+' },\n'
       })
     })
+    spinner3 = 'invisible'
   })
+  if ((spinner1 == 'visible') || (spinner2 == 'visible') || (spinner3 == 'visible')) {
+    myrefresh = .5 
+  } else {
+    myrefresh = drf
+  }
   res.render('index', {
     page:'Home', 
     menuId:'home',
@@ -139,7 +178,11 @@ router.get('/', function (req, res) {
      server2: server2,
      metric2: metrics2,
      server3: server3,
-     metric3: metrics3
+     metric3: metrics3,
+     spinner1: spinner1,
+     spinner2: spinner2,
+     spinner3: spinner3,
+     myrefresh: myrefresh
    })
    serverlist1 = ''
    serverlist2 = ''
@@ -152,24 +195,33 @@ router.post('/', function (req, res) {
   }
   if (typeof req.body.datapoints !== 'undefined') {
     dpts = req.body.datapoints
+    spinner1 = 'visible'
+    spinner2 = 'visible'
+    spinner3 = 'visible'
   }
   if (typeof req.body.metric1 !== 'undefined') {
     metrics1 = req.body.metric1
+    spinner1 = 'visible'
   }
   if (typeof req.body.metric2 !== 'undefined') {
     metrics2 = req.body.metric2
+    spinner2 = 'visible'
   }
   if (typeof req.body.metric3 !== 'undefined') {
     metrics3 = req.body.metric3
+    spinner3 = 'visible'
   }
   if (typeof req.body.server1 !== 'undefined') {
     server1 = req.body.server1
+    spinner1 = 'visible'
   }
   if (typeof req.body.server2 !== 'undefined') {
     server2 = req.body.server2
+    spinner2 = 'visible'
   }
   if (typeof req.body.server3 !== 'undefined') {
     server3 = req.body.server3
+    spinner3 = 'visible'
   }
   res.redirect('/')
 })

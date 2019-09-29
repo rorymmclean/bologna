@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<meta charset="utf-8" http-equiv="refresh" content="<%= drfvalue %>" />
+<meta charset="utf-8" http-equiv="refresh" content="<%= myrefresh %>" />
 <html lang="en">
 <head>
  <% include partials/head %> 
@@ -8,6 +8,8 @@
 <% include partials/menu %>
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
+
+</script>
 
 <div class="divrf">
 <form method="post">
@@ -64,8 +66,10 @@ Refresh Rate:
       <option value='MemU' <%= metric1 == 'MemU' ? 'selected' : ''%>>MemU - RAM User</option>
       <option value='MemF' <%= metric1 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
     </select>
-      
-  </form>      
+  </form>    
+  <div ID="spinner1" class=<%= spinner1 %> >
+    <img src="images/spinner.gif" />
+  </div>  
 </div>
 <div id="my_dataviz_2">
   <form method="post">
@@ -91,7 +95,10 @@ Refresh Rate:
         <option value='MemF' <%= metric2 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
       </select>
     </form>          
-</div>
+    <div ID="spinner2" class=<%= spinner2 %> >
+      <img src="images/spinner.gif" />
+    </div>  
+  </div>
 <div id="my_dataviz_3">
   <form method="post">
     <select id ='server3' name='server3' value='<%= server3 %>' onchange="this.form.submit()" >
@@ -115,7 +122,10 @@ Refresh Rate:
         <option value='MemU' <%= metric3 == 'MemU' ? 'selected' : ''%>>MemU - RAM User</option>
         <option value='MemF' <%= metric3 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
       </select>
-  </form>            
+  </form>
+  <div ID="spinner3" class=<%= spinner3 %> >
+    <img src="images/spinner.gif" />
+  </div>  
 </div>
 
 <script>
@@ -187,85 +197,16 @@ Refresh Rate:
   yAxis = svg1.append("g")
     .call(d3.axisLeft(y));
 
-  // Add a clipPath: everything out of this area won't be drawn.
-  var clip = svg1.append("defs").append("svg:clipPath")
-    .attr("id", "clip")
-    .append("svg:rect")
-    .attr("width", width)
-    .attr("height", height)
-    .attr("x", 0)
-    .attr("y", 0);
-
-  // Add brushing
-  var brush = d3.brushX()                   // Add the brush feature using the d3.brush function
-    .extent([[0, 0], [width, height]])  // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
-    .on("end", updateChart)               // Each time the brush selection changes, trigger the 'updateChart' function
-
-  // Create the line variable: where both the line and the brush take place
-  var line = svg1.append('g')
-    .attr("clip-path", "url(#clip)")
-
-  // Add the line
-  line.append("path")
-    .datum(data1)
-    .attr("class", "line")  // I add the class line to be able to modify this line later on.
-    .attr("fill", "none")
-    .attr("stroke", "steelblue")
-    .attr("stroke-width", 1.5)
-    .attr("d", d3.line()
-      .x(function (d) { return x(d.date) })
-      .y(function (d) { return y(d.value) })
-    )
-
-  // Add the brushing
-  line
-    .append("g")
-    .attr("class", "brush")
-    .call(brush);
-
-  // A function that set idleTimeOut to null
-  var idleTimeout
-  function idled() { idleTimeout = null; }
-
-  // A function that update the chart for given boundaries
-  function updateChart() {
-
-    // What are the selected boundaries?
-    extent = d3.event.selection
-
-    // If no selection, back to initial coordinate. Otherwise, update X axis domain
-    if (!extent) {
-      if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
-      x.domain([4, 8])
-    } else {
-      x.domain([x.invert(extent[0]), x.invert(extent[1])])
-      line.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
-    }
-
-    // Update axis and line position
-    xAxis.transition().duration(1000).call(d3.axisBottom(x))
-    line
-      .select('.line')
-      .transition()
-      .duration(1000)
+// Add the line
+svg1.append("path")
+      .datum(data1)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 3)
       .attr("d", d3.line()
-        .x(function (d) { return x(d.date) })
-        .y(function (d) { return y(d.value) })
-      )
-  }
-
-  // If user double click, reinitialize the chart
-  svg1.on("dblclick", function () {
-    x.domain(d3.extent(data1, function (d) { return d.date; }))
-    xAxis.transition().call(d3.axisBottom(x))
-    line
-      .select('.line')
-      .transition()
-      .attr("d", d3.line()
-        .x(function (d) { return x(d.date) })
-        .y(function (d) { return y(d.value) })
-      )
-  });
+        .x(function(d) { return x(d.date) })
+        .y(function(d) { return y(d.value) })
+        )
 
   // append the svg2 object to the body of the page
   var svg2 = d3.select("#my_dataviz_2")
@@ -291,85 +232,16 @@ Refresh Rate:
   yAxis = svg2.append("g")
     .call(d3.axisLeft(y));
 
-  // Add a clipPath: everything out of this area won't be drawn.
-  var clip = svg2.append("defs").append("svg:clipPath")
-    .attr("id", "clip")
-    .append("svg:rect")
-    .attr("width", width)
-    .attr("height", height)
-    .attr("x", 0)
-    .attr("y", 0);
-
-  // Add brushing
-  var brush = d3.brushX()                   // Add the brush feature using the d3.brush function
-    .extent([[0, 0], [width, height]])  // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
-    .on("end", updateChart)               // Each time the brush selection changes, trigger the 'updateChart' function
-
-  // Create the line variable: where both the line and the brush take place
-  var line = svg2.append('g')
-    .attr("clip-path", "url(#clip)")
-
   // Add the line
-  line.append("path")
-    .datum(data2)
-    .attr("class", "line")  // I add the class line to be able to modify this line later on.
-    .attr("fill", "none")
-    .attr("stroke", "steelblue")
-    .attr("stroke-width", 1.5)
-    .attr("d", d3.line()
-      .x(function (d) { return x(d.date) })
-      .y(function (d) { return y(d.value) })
-    )
-
-  // Add the brushing
-  line
-    .append("g")
-    .attr("class", "brush")
-    .call(brush);
-
-  // A function that set idleTimeOut to null
-  var idleTimeout
-  function idled() { idleTimeout = null; }
-
-  // A function that update the chart for given boundaries
-  function updateChart() {
-
-    // What are the selected boundaries?
-    extent = d3.event.selection
-
-    // If no selection, back to initial coordinate. Otherwise, update X axis domain
-    if (!extent) {
-      if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
-      x.domain([4, 8])
-    } else {
-      x.domain([x.invert(extent[0]), x.invert(extent[1])])
-      line.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
-    }
-
-    // Update axis and line position
-    xAxis.transition().duration(1000).call(d3.axisBottom(x))
-    line
-      .select('.line')
-      .transition()
-      .duration(1000)
+  svg2.append("path")
+      .datum(data2)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 3)
       .attr("d", d3.line()
-        .x(function (d) { return x(d.date) })
-        .y(function (d) { return y(d.value) })
-      )
-  }
-
-  // If user double click, reinitialize the chart
-  svg2.on("dblclick", function () {
-    x.domain(d3.extent(data2, function (d) { return d.date; }))
-    xAxis.transition().call(d3.axisBottom(x))
-    line
-      .select('.line')
-      .transition()
-      .attr("d", d3.line()
-        .x(function (d) { return x(d.date) })
-        .y(function (d) { return y(d.value) })
-      )
-  });
+        .x(function(d) { return x(d.date) })
+        .y(function(d) { return y(d.value) })
+        )
 
   // append the svg3 object to the body of the page
   var svg3 = d3.select("#my_dataviz_3")
@@ -395,85 +267,16 @@ Refresh Rate:
   yAxis = svg3.append("g")
     .call(d3.axisLeft(y));
 
-  // Add a clipPath: everything out of this area won't be drawn.
-  var clip = svg3.append("defs").append("svg:clipPath")
-    .attr("id", "clip")
-    .append("svg:rect")
-    .attr("width", width)
-    .attr("height", height)
-    .attr("x", 0)
-    .attr("y", 0);
-
-  // Add brushing
-  var brush = d3.brushX()                   // Add the brush feature using the d3.brush function
-    .extent([[0, 0], [width, height]])  // initialise the brush area: start at 0,0 and finishes at width,height: it means I select the whole graph area
-    .on("end", updateChart)               // Each time the brush selection changes, trigger the 'updateChart' function
-
-  // Create the line variable: where both the line and the brush take place
-  var line = svg3.append('g')
-    .attr("clip-path", "url(#clip)")
-
   // Add the line
-  line.append("path")
-    .datum(data3)
-    .attr("class", "line")  // I add the class line to be able to modify this line later on.
-    .attr("fill", "none")
-    .attr("stroke", "steelblue")
-    .attr("stroke-width", 1.5)
-    .attr("d", d3.line()
-      .x(function (d) { return x(d.date) })
-      .y(function (d) { return y(d.value) })
-    )
-
-  // Add the brushing
-  line
-    .append("g")
-    .attr("class", "brush")
-    .call(brush);
-
-  // A function that set idleTimeOut to null
-  var idleTimeout
-  function idled() { idleTimeout = null; }
-
-  // A function that update the chart for given boundaries
-  function updateChart() {
-
-    // What are the selected boundaries?
-    extent = d3.event.selection
-
-    // If no selection, back to initial coordinate. Otherwise, update X axis domain
-    if (!extent) {
-      if (!idleTimeout) return idleTimeout = setTimeout(idled, 350); // This allows to wait a little bit
-      x.domain([4, 8])
-    } else {
-      x.domain([x.invert(extent[0]), x.invert(extent[1])])
-      line.select(".brush").call(brush.move, null) // This remove the grey brush area as soon as the selection has been done
-    }
-
-    // Update axis and line position
-    xAxis.transition().duration(1000).call(d3.axisBottom(x))
-    line
-      .select('.line')
-      .transition()
-      .duration(1000)
+  svg3.append("path")
+      .datum(data3)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 3)
       .attr("d", d3.line()
-        .x(function (d) { return x(d.date) })
-        .y(function (d) { return y(d.value) })
-      )
-  }
-
-  // If user double click, reinitialize the chart
-  svg3.on("dblclick", function () {
-    x.domain(d3.extent(data3, function (d) { return d.date; }))
-    xAxis.transition().call(d3.axisBottom(x))
-    line
-      .select('.line')
-      .transition()
-      .attr("d", d3.line()
-        .x(function (d) { return x(d.date) })
-        .y(function (d) { return y(d.value) })
-      )
-  });
+        .x(function(d) { return x(d.date) })
+        .y(function(d) { return y(d.value) })
+        )
 
 </script>
 

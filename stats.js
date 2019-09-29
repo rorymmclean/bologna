@@ -133,6 +133,4 @@ while (1) {
   sleep(10000)
 }
 
-// si.dockerContainerStats()
-// si.dockerContainers()
 process.exit(1)

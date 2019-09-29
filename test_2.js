@@ -1,9 +1,9 @@
-var fs = require('fs')
+var fs = require('graceful-fs')
 var sleep = require('system-sleep')
 var randomstring = require('randomstring')
 
 const homedir = require('os').homedir()
-var testpath = homedir+'/TESTMNT/'
+var testpath = homedir + '/TESTMNT/'
 if (process.env.SB_PATH) {
   testpath = process.env.SB_PATH
 } else if (process.env.sb_path) {
@@ -17,7 +17,7 @@ var data = ''
 
 console.log('Test Loop #' + testloop + ' started')
 
-var redisSpeed = 10
+var redisSpeed = 0
 if (process.env.SB_SLEEP) {
   redisSpeed = process.env.SB_SLEEP
 } else if (process.env.sb_sleep) {
@@ -26,24 +26,12 @@ if (process.env.SB_SLEEP) {
 
 console.log(redisSpeed)
 
-function myreadFileSync (filePath) {
-  var fd = fs.openSync(filePath, 'rs')
-  var content = ''
-  var buffer = new Buffer.alloc(1024)
-  var readCount = fs.readSync(fd, buffer, null, 1024)
-  while (readCount > 0) {
-    // console.log("Read " + readCount + " bytes.");
-    content += buffer.toString().substr(0, readCount)
-    readCount = fs.readSync(fd, buffer, null, 1024)
-  }
-  fs.closeSync(fd)
-}
-
 data = randomstring.generate(4000)
+fs.writeFileSync(testpath + 'temp_2_' + testloop + '_a.txt', data)
 
 while (1) {
-  fs.writeFileSync(testpath + 'temp_2_' + testloop + '.txt', data)
+  fs.copyFileSync(testpath + 'temp_2_' + testloop + '_a.txt', testpath + 'temp_2_' + testloop + '_b.txt')
   sleep(redisSpeed)
-  myreadFileSync(testpath + 'temp_2_' + testloop + '.txt')
+  fs.copyFileSync(testpath + 'temp_2_' + testloop + '_b.txt', testpath + 'temp_2_' + testloop + '_a.txt')
   sleep(redisSpeed)
 }

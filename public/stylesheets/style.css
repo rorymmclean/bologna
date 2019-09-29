@@ -21,6 +21,16 @@
 }
 .divrf {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 32px;
+  right: 10px;
+}
+
+#my_dataviz_1, #my_dataviz_2, #my_dataviz_3 {
+  position: relative;
+}
+#spinner1, #spinner2, #spinner3 {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  z-index: 10;
 }
