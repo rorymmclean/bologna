@@ -11,6 +11,16 @@ var spinner1 = 'visible'
 var spinner2 = 'visible'
 var spinner3 = 'visible'
 var myrefresh = 1
+var winternet = -1
+
+var d3test = require('http');
+d3test.get ('http://www.google.com', function (resp) {
+  resp.on('data', function (d) {
+    winternet = 1
+  })
+}).on('error', function (e) {
+  winternet = -1
+})
 
 if (typeof drf == 'undefined') {
   var drf = 99999999
@@ -182,7 +192,8 @@ router.get('/', function (req, res) {
      spinner1: spinner1,
      spinner2: spinner2,
      spinner3: spinner3,
-     myrefresh: myrefresh
+     myrefresh: myrefresh,
+     winternet: winternet
    })
    serverlist1 = ''
    serverlist2 = ''
