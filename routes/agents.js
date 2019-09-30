@@ -2,11 +2,13 @@ var express = require('express')
 var router = express.Router()
 var si = require('systeminformation')
 var spawn = require('child_process')
+var sleep = require('system-sleep')
 
 var max1 = 0
 var max2 = 0
 var max3 = 0
 var max4 = 0
+var max5 = 0
 
 function randomInt (low, high) {
   return Math.floor(Math.random() * (high - low) + low)
@@ -17,6 +19,7 @@ router.get('/', function (req, res) {
   var pcount2 = 0
   var pcount3 = 0
   var pcount4 = 0
+  var pcount5 = 0
   si.processes()
     .then(data => {
       var dataf =
@@ -26,7 +29,6 @@ router.get('/', function (req, res) {
               && el.command == 'node'  
           })
       for (var i = 0, len = dataf.length; i < len; i++) {
-        // console.log(dataf[i].pid + '/' + dataf[i].params.substr(5,1))
         switch(dataf[i].params.substr(5,1)) {
           case '1':
             pcount1 += 1
@@ -43,23 +45,28 @@ router.get('/', function (req, res) {
           case '4':
             pcount4 += 1
             max4 = dataf[i].pid
-        } 
+            break;
+          case '5':
+            pcount5 += 1
+            max5 = dataf[i].pid
+          } 
       }
-      console.log(max1+'/'+max2+'/'+max3+'/'+max4)
+      // console.log(max1+'/'+max2+'/'+max3+'/'+max4+'/'+max5)
       res.render('agents', {
         page:'Home', 
         menuId:'home',
         pcount1: pcount1,
         pcount2: pcount2,
         pcount3: pcount3,
-        pcount4: pcount4
+        pcount4: pcount4,
+        pcount5: pcount5
       })
     })
 })
 
 router.post('/', function (req, res) {
-  console.log(req.body)
-  if (typeof req.body['up1.x'] !== 'undefined') { console.log(max1)
+  // console.log(req.body)
+  if (typeof req.body['up1.x'] !== 'undefined') { // console.log(max1)
     spawn.spawn('node', ['test_1.js', randomInt(1000000, 10000000)], {
         detached: true }
     )
@@ -99,6 +106,31 @@ router.post('/', function (req, res) {
       { stdio: [null, process.stdout, process.stderr] }
     )
   }
+  if (typeof req.body['up5.x'] !== 'undefined') {
+    spawn.spawn('node', ['test_5.js'], {
+      detached: true }
+    )
+  }
+  if (typeof req.body['down5.x'] !== 'undefined') {
+    si.processes()
+      .then(data => {
+        var dataf =
+          data.list.filter(function (el) {
+            return el.parentPid == max5
+          })
+        for (var i = 0, len = dataf.length; i < len; i++) {
+          console.log(dataf[i].pid+' : '+max5)
+          pmax5 = dataf[i].pid
+          spawn.spawnSync('kill', [pmax5],
+            { stdio: [null, process.stdout, process.stderr] }
+          )
+        }
+        spawn.spawnSync('kill', [max5],
+          { stdio: [null, process.stdout, process.stderr] }
+        )
+      })
+  }
+  sleep(1000)
   res.redirect('/agents')
 })
 
