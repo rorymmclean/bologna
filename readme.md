@@ -35,7 +35,20 @@ For every server that will be running the app should have two environmental vari
 **SB_IP** is the Redis IP address address. If not set it will default to localhost.
 **SB_PORT** is the Redis port address. If not set it will default to 6379
 
-On each server you must run a stats collecting program. There are two alternatives. *stats_linux.js* uses the Linux tool IOSTAT to collect metrics. You may have to install IOSTAT on your Linus server before you start. *stats.js* collects metrics using the node module *systeminformation*.
+On each server you must run a stats collecting program. There are two alternatives. *stats_linux.js* uses the Linux tool IOSTAT to collect metrics. You may have to install IOSTAT on your Linus server before you start. *stats.js* collects metrics using the node module *systeminformation* and will work on other platforms.
+
+From within the project folder run the following command:
+`node stats.js &` or `node stats_linux.js &`
+The & will run the job in the background and return to the os prompt. The stats collector will capture all the data points every 10 seconds. 
+
+Next, run the express web app with the following command:
+`npm start`
+This will start the web application hosted on port 3000:
+http://localhost:3000
+
+At this point no agents (bolony slices) are running so the only metrics being collected is from other comptuer activity.
+
+![Monitoring Screen](https://github.com/rorymmclean/bologna/blob/master/public/images/Picture1.jpg "Logo Title")
 
 >...
 work-in-progress
