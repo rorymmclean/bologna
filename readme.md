@@ -27,7 +27,16 @@ In the project directory run `npm install` to install all the packages.
 
 ## Operations
 
-There are several configurations based upon environmental variables:
+The application is controlled through several environmental variables. The first step is to start Redis on one of the servers. We are not using any authentication since none of the data is particularly sensitive 
+`docker run --name redisdb -p 6379:6379 redis:latest`
+should be sufficient to give you a Redis database. Note the IP address and the port if you changed off the default port. 
+
+For every server that will be running the app should have two environmental variables set:
+**SB_IP** is the Redis IP address address. If not set it will default to localhost.
+**SB_PORT** is the Redis port address. If not set it will default to 6379
+
+On each server you must run a stats collecting program. There are two alternatives. *stats_linux.js* uses the Linux tool IOSTAT to collect metrics. You may have to install IOSTAT on your Linus server before you start. *stats.js* collects metrics using the node module *systeminformation*.
+
 >...
 work-in-progress
 ...
