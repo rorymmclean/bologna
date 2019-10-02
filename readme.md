@@ -48,11 +48,23 @@ http://localhost:3000
 
 At this point no agents (bolony slices) are running so the only metrics being collected is from other comptuer activity.
 
-![Monitoring Screen](https://github.com/rorymmclean/bologna/blob/master/public/images/Picture1.jpg "Logo Title")
+![Monitoring Screen](https://raw.githubusercontent.com/rorymmclean/bologna/master/public/images/Picture1.jpg "Monitoring Screen")
 
->...
-work-in-progress
-...
+The monitoring screen has several settings:
+1. Screen refresh rate: This can range from 10 seconds to an hour or no refreshes at all.
+2. Number of data points: The number of data points displaying in the graph. It is always the most recent data points. 
+3. The server that generated the metrics. The stats collector uses the host name for the metrics. I assume each server has a unique host name. 
+4. The metrics for the graph. stats.js collects the metrics from "IORx" down to "MemF". stats_linux.js collects all the metrics that begin with "Disk..." plus the four CPU load metrics. 
+
+To launch bolony slices click on the "Slices" link in the menu bar. 
+
+![Agents Screen](https://raw.githubusercontent.com/rorymmclean/bologna/master/public/images/Picture2.jpg "Agents Screen")
+
+On this screen click the up and down arrows to add and remove agents. The tests have been designed to duplicate certain patterns but can be combined any way you wish. Slice #1 is a pattern a database tends to generate. I find that 5 or 6 of these slices is enough to flood my laptops IO bandwidth. Slice #2 is a lot of small read and writes. Unlike #1, the writes aren't cached. Slice #3 creates a 1GB file and then reads it like the server is providing streaming media. Slice #4 has no CPU. It consumes the CPU with an algorithm for calculating PI. Slice #5 randomly hits a variety of web sites to consume the network bandwidth. 
+
+To kill the stats collector find the PID using the command `ps | grep node` and `kill `*pid#*` `
+
+If you want to clean up your Redis database you can remove the docker container or run a Redis IDE like redis-commander.
 
 ## Contributing
 
