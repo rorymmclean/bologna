@@ -8,11 +8,7 @@
 <% include partials/menu %>
 <!-- Load d3.js -->
 <script src=
-<%= winternet == '1' ? 'https://d3js.org/d3.v4.js' : './javascripts/d3.min.js'%>
-</script>
-<!-- <script src="https://d3js.org/d3.v4.js"></script> 
-<script src="./javascripts/d3.min.js"></script> -->
-
+<%= winternet == '1' ? 'https://d3js.org/d3.v4.js' : './javascripts/d3.min.js'%> >
 </script>
 
 <div class="divrf">
@@ -47,12 +43,13 @@ Refresh Rate:
 </div>
 
 <!-- Create a div where the graph will take place -->
-<div id="my_dataviz_1">
+<div id="dataviz_1">
   <form method="post">
     <select id ='server1' name='server1' value='<%= server1 %>' onchange="this.form.submit()" >
       <%- serverlist1 %>
     </select>
     <select id ='metric1' name='metric1' value='<%= metric1 %>' onchange="this.form.submit()" >
+      <option value='None' <%= metric1 == 'None' ? 'selected' : ''%>>None</option>
       <option value='IORx' <%= metric1 == 'IORx' ? 'selected' : ''%>>IORx - I/Os Reads</option>
       <option value='IOWx' <%= metric1 == 'IOWx' ? 'selected' : ''%>>IOWx - I/Os Writes</option>
       <option value='IOTx' <%= metric1 == 'IOTx' ? 'selected' : ''%>>IOTx - I/Os Total</option>
@@ -102,16 +99,22 @@ Refresh Rate:
       <option value='Util3' <%= metric1 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
     </select>
   </form>    
-  <div ID="spinner1" class=<%= spinner1 %> >
-    <img src="images/spinner.gif" />
-  </div>  
+  <div id="graph_1_container" <%- metric1 == 'None' ? 'style="display:none;"' : '' %> > 
+    <div id="graph_1_graph" > 
+      <div ID="graph_1_spinner" class=<%= spinner1 %> >
+        <img src="images/spinner.gif" />
+      </div>
+    </div>    
+  </div> 
+  <hr>
 </div>
-<div id="my_dataviz_2">
+<div id="dataviz_2">
   <form method="post">
     <select id ='server2' name='server2' value='<%= server2 %>' onchange="this.form.submit()" >
       <%- serverlist2 %>
     </select>
     <select id ='metric2' name='metric2' value='<%= metric2 %>' onchange="this.form.submit()" >
+        <option value='None' <%= metric2 == 'None' ? 'selected' : ''%>>None</option>
         <option value='IORx' <%= metric2 == 'IORx' ? 'selected' : ''%>>IORx - I/Os Reads</option>
         <option value='IOWx' <%= metric2 == 'IOWx' ? 'selected' : ''%>>IOWx - I/Os Writes</option>
         <option value='IOTx' <%= metric2 == 'IOTx' ? 'selected' : ''%>>IOTx - I/Os Total</option>
@@ -160,17 +163,23 @@ Refresh Rate:
         <option value='Await3' <%= metric2 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
         <option value='Util3' <%= metric2 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
         </select>
-    </form>          
-    <div ID="spinner2" class=<%= spinner2 %> >
-      <img src="images/spinner.gif" />
-    </div>  
+    </form>
+    <div id="graph_2_container" <%- metric2 == 'None' ? 'style="display:none;"' : '' %> > 
+      <div id="graph_2_graph" > 
+        <div ID="graph_2_spinner" class=<%= spinner2 %> >
+          <img src="images/spinner.gif" />
+        </div>
+      </div>    
+    </div> 
+    <hr>
   </div>
-<div id="my_dataviz_3">
+<div id="dataviz_3">
   <form method="post">
     <select id ='server3' name='server3' value='<%= server3 %>' onchange="this.form.submit()" >
       <%- serverlist3 %>
     </select>
     <select id ='metric3' name='metric3' value='<%= metric3 %>' onchange="this.form.submit()" >
+        <option value='None' <%= metric3 == 'None' ? 'selected' : ''%>>None</option>
         <option value='IORx' <%= metric3 == 'IORx' ? 'selected' : ''%>>IORx - I/Os Reads</option>
         <option value='IOWx' <%= metric3 == 'IOWx' ? 'selected' : ''%>>IOWx - I/Os Writes</option>
         <option value='IOTx' <%= metric3 == 'IOTx' ? 'selected' : ''%>>IOTx - I/Os Total</option>
@@ -220,16 +229,350 @@ Refresh Rate:
         <option value='Util3' <%= metric3 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
         </select>
   </form>
-  <div ID="spinner3" class=<%= spinner3 %> >
-    <img src="images/spinner.gif" />
-  </div>  
+  <div id="graph_3_container" <%- metric3 == 'None' ? 'style="display:none;"' : '' %> > 
+    <div id="graph_3_graph" > 
+      <div ID="graph_3_spinner" class=<%= spinner3 %> >
+        <img src="images/spinner.gif" />
+      </div>
+    </div>    
+  </div> 
+  <hr>
+</div>
+<div id="dataviz_4">
+  <form method="post">
+    <select id ='server4' name='server4' value='<%= server4 %>' onchange="this.form.submit()" >
+      <%- serverlist3 %>
+    </select>
+    <select id ='metric4' name='metric4' value='<%= metric4 %>' onchange="this.form.submit()" >
+        <option value='None' <%= metric4 == 'None' ? 'selected' : ''%>>None</option>
+        <option value='IORx' <%= metric4 == 'IORx' ? 'selected' : ''%>>IORx - I/Os Reads</option>
+        <option value='IOWx' <%= metric4 == 'IOWx' ? 'selected' : ''%>>IOWx - I/Os Writes</option>
+        <option value='IOTx' <%= metric4 == 'IOTx' ? 'selected' : ''%>>IOTx - I/Os Total</option>
+        <option value='ByRx' <%= metric4 == 'ByRx' ? 'selected' : ''%>>ByRx - Bytes Reads</option>
+        <option value='ByWx' <%= metric4 == 'ByWx' ? 'selected' : ''%>>ByWx - Bytes Writes</option>
+        <option value='ByTx' <%= metric4 == 'ByTx' ? 'selected' : ''%>>ByTx - Bytes Totals</option>
+        <option value='BSRx' <%= metric4 == 'BSRx' ? 'selected' : ''%>>BSRx - Bytes/Sec Reads</option>
+        <option value='BSWx' <%= metric4 == 'BSWx' ? 'selected' : ''%>>BSWx - Bytes/Sec Writes</option>
+        <option value='BSTx' <%= metric4 == 'BSTx' ? 'selected' : ''%>>BSTx - Bytes/Sec Total</option>
+        <option value='LoadU' <%= metric4 == 'LoadU' ? 'selected' : ''%>>LoadU - CPU Load User</option>
+        <option value='LoadS' <%= metric4 == 'LoadS' ? 'selected' : ''%>>LoadS - CPU Load System</option>
+        <option value='LoadI' <%= metric4 == 'LoadI' ? 'selected' : ''%>>LoadI - CPU Load Idle</option>
+        <option value='NetRx' <%= metric4 == 'NetRx' ? 'selected' : ''%>>NetRx - Net Received Bytes</option>
+        <option value='NetTx' <%= metric4 == 'NetTx' ? 'selected' : ''%>>NetTx - Net Transmitted Bytes</option>
+        <option value='MemU' <%= metric4 == 'MemU' ? 'selected' : ''%>>MemU - RAM User</option>
+        <option value='MemF' <%= metric4 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
+        <option value='LoadIO' <%= metric4 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
+        <option value='IORx1' <%= metric4 == 'IORx1' ? 'selected' : ''%>>Disk 1 - I/Os Reads</option>
+        <option value='IOWx1' <%= metric4 == 'IOWx1' ? 'selected' : ''%>>Disk 1 - I/Os Writes</option>
+        <option value='IOTx1' <%= metric4 == 'IOTx1' ? 'selected' : ''%>>Disk 1 - I/Os Total</option>
+        <option value='ByRx1' <%= metric4 == 'ByRx1' ? 'selected' : ''%>>Disk 1 - Bytes Reads</option>
+        <option value='ByWx1' <%= metric4 == 'ByWx1' ? 'selected' : ''%>>Disk 1 - Bytes Writes</option>
+        <option value='ByTx1' <%= metric4 == 'ByTx1' ? 'selected' : ''%>>Disk 1 - Bytes Totals</option>
+        <option value='BSRx1' <%= metric4 == 'BSRx1' ? 'selected' : ''%>>Disk 1 - Bytes/Sec Reads</option>
+        <option value='BSWx1' <%= metric4 == 'BSWx1' ? 'selected' : ''%>>Disk 1 - Bytes/Sec Writes</option>
+        <option value='Await1' <%= metric4 == 'Await1' ? 'selected' : ''%>>Disk 1 - Await Time </option>
+        <option value='Util1' <%= metric4 == 'Util1' ? 'selected' : ''%>>Disk 1 - % CPU Time</option>
+        <option value='IORx2' <%= metric4 == 'IORx2' ? 'selected' : ''%>>Disk 2 - I/Os Reads</option>
+        <option value='IOWx2' <%= metric4 == 'IOWx2' ? 'selected' : ''%>>Disk 2 - I/Os Writes</option>
+        <option value='IOTx2' <%= metric4 == 'IOTx2' ? 'selected' : ''%>>Disk 2 - I/Os Total</option>
+        <option value='ByRx2' <%= metric4 == 'ByRx2' ? 'selected' : ''%>>Disk 2 - Bytes Reads</option>
+        <option value='ByWx2' <%= metric4 == 'ByWx2' ? 'selected' : ''%>>Disk 2 - Bytes Writes</option>
+        <option value='ByTx2' <%= metric4 == 'ByTx2' ? 'selected' : ''%>>Disk 2 - Bytes Totals</option>
+        <option value='BSRx2' <%= metric4 == 'BSRx2' ? 'selected' : ''%>>Disk 2 - Bytes/Sec Reads</option>
+        <option value='BSWx2' <%= metric4 == 'BSWx2' ? 'selected' : ''%>>Disk 2 - Bytes/Sec Writes</option>
+        <option value='Await2' <%= metric4 == 'Await2' ? 'selected' : ''%>>Disk 2 - Await Time </option>
+        <option value='Util2' <%= metric4 == 'Util2' ? 'selected' : ''%>>Disk 2 - % CPU Time</option>
+        <option value='IORx3' <%= metric4 == 'IORx3' ? 'selected' : ''%>>Disk 3 - I/Os Reads</option>
+        <option value='IOWx3' <%= metric4 == 'IOWx3' ? 'selected' : ''%>>Disk 3 - I/Os Writes</option>
+        <option value='IOTx3' <%= metric4 == 'IOTx3' ? 'selected' : ''%>>Disk 3 - I/Os Total</option>
+        <option value='ByRx3' <%= metric4 == 'ByRx3' ? 'selected' : ''%>>Disk 3 - Bytes Reads</option>
+        <option value='ByWx3' <%= metric4 == 'ByWx3' ? 'selected' : ''%>>Disk 3 - Bytes Writes</option>
+        <option value='ByTx3' <%= metric4 == 'ByTx3' ? 'selected' : ''%>>Disk 3 - Bytes Totals</option>
+        <option value='BSRx3' <%= metric4 == 'BSRx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Reads</option>
+        <option value='BSWx3' <%= metric4 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
+        <option value='Await3' <%= metric4 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
+        <option value='Util3' <%= metric4 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
+        </select>
+  </form>
+  <div id="graph_4_container" <%- metric4 == 'None' ? 'style="display:none;"' : '' %> > 
+    <div id="graph_4_graph" > 
+      <div ID="graph_4_spinner" class=<%= spinner4 %> >
+        <img src="images/spinner.gif" />
+      </div>
+    </div>    
+  </div> 
+  <hr>
+</div>
+<div id="dataviz_5">
+  <form method="post">
+    <select id ='server5' name='server5' value='<%= server5 %>' onchange="this.form.submit()" >
+      <%- serverlist5 %>
+    </select>
+    <select id ='metric5' name='metric5' value='<%= metric5 %>' onchange="this.form.submit()" >
+        <option value='None' <%= metric5 == 'None' ? 'selected' : ''%>>None</option>
+        <option value='IORx' <%= metric5 == 'IORx' ? 'selected' : ''%>>IORx - I/Os Reads</option>
+        <option value='IOWx' <%= metric5 == 'IOWx' ? 'selected' : ''%>>IOWx - I/Os Writes</option>
+        <option value='IOTx' <%= metric5 == 'IOTx' ? 'selected' : ''%>>IOTx - I/Os Total</option>
+        <option value='ByRx' <%= metric5 == 'ByRx' ? 'selected' : ''%>>ByRx - Bytes Reads</option>
+        <option value='ByWx' <%= metric5 == 'ByWx' ? 'selected' : ''%>>ByWx - Bytes Writes</option>
+        <option value='ByTx' <%= metric5 == 'ByTx' ? 'selected' : ''%>>ByTx - Bytes Totals</option>
+        <option value='BSRx' <%= metric5 == 'BSRx' ? 'selected' : ''%>>BSRx - Bytes/Sec Reads</option>
+        <option value='BSWx' <%= metric5 == 'BSWx' ? 'selected' : ''%>>BSWx - Bytes/Sec Writes</option>
+        <option value='BSTx' <%= metric5 == 'BSTx' ? 'selected' : ''%>>BSTx - Bytes/Sec Total</option>
+        <option value='LoadU' <%= metric5 == 'LoadU' ? 'selected' : ''%>>LoadU - CPU Load User</option>
+        <option value='LoadS' <%= metric5 == 'LoadS' ? 'selected' : ''%>>LoadS - CPU Load System</option>
+        <option value='LoadI' <%= metric5 == 'LoadI' ? 'selected' : ''%>>LoadI - CPU Load Idle</option>
+        <option value='NetRx' <%= metric5 == 'NetRx' ? 'selected' : ''%>>NetRx - Net Received Bytes</option>
+        <option value='NetTx' <%= metric5 == 'NetTx' ? 'selected' : ''%>>NetTx - Net Transmitted Bytes</option>
+        <option value='MemU' <%= metric5 == 'MemU' ? 'selected' : ''%>>MemU - RAM User</option>
+        <option value='MemF' <%= metric5 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
+        <option value='LoadIO' <%= metric5 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
+        <option value='IORx1' <%= metric5 == 'IORx1' ? 'selected' : ''%>>Disk 1 - I/Os Reads</option>
+        <option value='IOWx1' <%= metric5 == 'IOWx1' ? 'selected' : ''%>>Disk 1 - I/Os Writes</option>
+        <option value='IOTx1' <%= metric5 == 'IOTx1' ? 'selected' : ''%>>Disk 1 - I/Os Total</option>
+        <option value='ByRx1' <%= metric5 == 'ByRx1' ? 'selected' : ''%>>Disk 1 - Bytes Reads</option>
+        <option value='ByWx1' <%= metric5 == 'ByWx1' ? 'selected' : ''%>>Disk 1 - Bytes Writes</option>
+        <option value='ByTx1' <%= metric5 == 'ByTx1' ? 'selected' : ''%>>Disk 1 - Bytes Totals</option>
+        <option value='BSRx1' <%= metric5 == 'BSRx1' ? 'selected' : ''%>>Disk 1 - Bytes/Sec Reads</option>
+        <option value='BSWx1' <%= metric5 == 'BSWx1' ? 'selected' : ''%>>Disk 1 - Bytes/Sec Writes</option>
+        <option value='Await1' <%= metric5 == 'Await1' ? 'selected' : ''%>>Disk 1 - Await Time </option>
+        <option value='Util1' <%= metric5 == 'Util1' ? 'selected' : ''%>>Disk 1 - % CPU Time</option>
+        <option value='IORx2' <%= metric5 == 'IORx2' ? 'selected' : ''%>>Disk 2 - I/Os Reads</option>
+        <option value='IOWx2' <%= metric5 == 'IOWx2' ? 'selected' : ''%>>Disk 2 - I/Os Writes</option>
+        <option value='IOTx2' <%= metric5 == 'IOTx2' ? 'selected' : ''%>>Disk 2 - I/Os Total</option>
+        <option value='ByRx2' <%= metric5 == 'ByRx2' ? 'selected' : ''%>>Disk 2 - Bytes Reads</option>
+        <option value='ByWx2' <%= metric5 == 'ByWx2' ? 'selected' : ''%>>Disk 2 - Bytes Writes</option>
+        <option value='ByTx2' <%= metric5 == 'ByTx2' ? 'selected' : ''%>>Disk 2 - Bytes Totals</option>
+        <option value='BSRx2' <%= metric5 == 'BSRx2' ? 'selected' : ''%>>Disk 2 - Bytes/Sec Reads</option>
+        <option value='BSWx2' <%= metric5 == 'BSWx2' ? 'selected' : ''%>>Disk 2 - Bytes/Sec Writes</option>
+        <option value='Await2' <%= metric5 == 'Await2' ? 'selected' : ''%>>Disk 2 - Await Time </option>
+        <option value='Util2' <%= metric5 == 'Util2' ? 'selected' : ''%>>Disk 2 - % CPU Time</option>
+        <option value='IORx3' <%= metric5 == 'IORx3' ? 'selected' : ''%>>Disk 3 - I/Os Reads</option>
+        <option value='IOWx3' <%= metric5 == 'IOWx3' ? 'selected' : ''%>>Disk 3 - I/Os Writes</option>
+        <option value='IOTx3' <%= metric5 == 'IOTx3' ? 'selected' : ''%>>Disk 3 - I/Os Total</option>
+        <option value='ByRx3' <%= metric5 == 'ByRx3' ? 'selected' : ''%>>Disk 3 - Bytes Reads</option>
+        <option value='ByWx3' <%= metric5 == 'ByWx3' ? 'selected' : ''%>>Disk 3 - Bytes Writes</option>
+        <option value='ByTx3' <%= metric5 == 'ByTx3' ? 'selected' : ''%>>Disk 3 - Bytes Totals</option>
+        <option value='BSRx3' <%= metric5 == 'BSRx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Reads</option>
+        <option value='BSWx3' <%= metric5 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
+        <option value='Await3' <%= metric5 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
+        <option value='Util3' <%= metric5 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
+        </select>
+  </form>
+  <div id="graph_5_container" <%- metric5 == 'None' ? 'style="display:none;"' : '' %> > 
+    <div id="graph_5_graph" > 
+      <div ID="graph_5_spinner" class=<%= spinner5 %> >
+        <img src="images/spinner.gif" />
+      </div>
+    </div>    
+  </div> 
+  <hr>
+</div>
+<div id="dataviz_6">
+  <form method="post">
+    <select id ='server6' name='server6' value='<%= server6 %>' onchange="this.form.submit()" >
+      <%- serverlist6 %>
+    </select>
+    <select id ='metric6' name='metric6' value='<%= metric6 %>' onchange="this.form.submit()" >
+        <option value='None' <%= metric6 == 'None' ? 'selected' : ''%>>None</option>
+        <option value='IORx' <%= metric6 == 'IORx' ? 'selected' : ''%>>IORx - I/Os Reads</option>
+        <option value='IOWx' <%= metric6 == 'IOWx' ? 'selected' : ''%>>IOWx - I/Os Writes</option>
+        <option value='IOTx' <%= metric6 == 'IOTx' ? 'selected' : ''%>>IOTx - I/Os Total</option>
+        <option value='ByRx' <%= metric6 == 'ByRx' ? 'selected' : ''%>>ByRx - Bytes Reads</option>
+        <option value='ByWx' <%= metric6 == 'ByWx' ? 'selected' : ''%>>ByWx - Bytes Writes</option>
+        <option value='ByTx' <%= metric6 == 'ByTx' ? 'selected' : ''%>>ByTx - Bytes Totals</option>
+        <option value='BSRx' <%= metric6 == 'BSRx' ? 'selected' : ''%>>BSRx - Bytes/Sec Reads</option>
+        <option value='BSWx' <%= metric6 == 'BSWx' ? 'selected' : ''%>>BSWx - Bytes/Sec Writes</option>
+        <option value='BSTx' <%= metric6 == 'BSTx' ? 'selected' : ''%>>BSTx - Bytes/Sec Total</option>
+        <option value='LoadU' <%= metric6 == 'LoadU' ? 'selected' : ''%>>LoadU - CPU Load User</option>
+        <option value='LoadS' <%= metric6 == 'LoadS' ? 'selected' : ''%>>LoadS - CPU Load System</option>
+        <option value='LoadI' <%= metric6 == 'LoadI' ? 'selected' : ''%>>LoadI - CPU Load Idle</option>
+        <option value='NetRx' <%= metric6 == 'NetRx' ? 'selected' : ''%>>NetRx - Net Received Bytes</option>
+        <option value='NetTx' <%= metric6 == 'NetTx' ? 'selected' : ''%>>NetTx - Net Transmitted Bytes</option>
+        <option value='MemU' <%= metric6 == 'MemU' ? 'selected' : ''%>>MemU - RAM User</option>
+        <option value='MemF' <%= metric6 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
+        <option value='LoadIO' <%= metric6 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
+        <option value='IORx1' <%= metric6 == 'IORx1' ? 'selected' : ''%>>Disk 1 - I/Os Reads</option>
+        <option value='IOWx1' <%= metric6 == 'IOWx1' ? 'selected' : ''%>>Disk 1 - I/Os Writes</option>
+        <option value='IOTx1' <%= metric6 == 'IOTx1' ? 'selected' : ''%>>Disk 1 - I/Os Total</option>
+        <option value='ByRx1' <%= metric6 == 'ByRx1' ? 'selected' : ''%>>Disk 1 - Bytes Reads</option>
+        <option value='ByWx1' <%= metric6 == 'ByWx1' ? 'selected' : ''%>>Disk 1 - Bytes Writes</option>
+        <option value='ByTx1' <%= metric6 == 'ByTx1' ? 'selected' : ''%>>Disk 1 - Bytes Totals</option>
+        <option value='BSRx1' <%= metric6 == 'BSRx1' ? 'selected' : ''%>>Disk 1 - Bytes/Sec Reads</option>
+        <option value='BSWx1' <%= metric6 == 'BSWx1' ? 'selected' : ''%>>Disk 1 - Bytes/Sec Writes</option>
+        <option value='Await1' <%= metric6 == 'Await1' ? 'selected' : ''%>>Disk 1 - Await Time </option>
+        <option value='Util1' <%= metric6 == 'Util1' ? 'selected' : ''%>>Disk 1 - % CPU Time</option>
+        <option value='IORx2' <%= metric6 == 'IORx2' ? 'selected' : ''%>>Disk 2 - I/Os Reads</option>
+        <option value='IOWx2' <%= metric6 == 'IOWx2' ? 'selected' : ''%>>Disk 2 - I/Os Writes</option>
+        <option value='IOTx2' <%= metric6 == 'IOTx2' ? 'selected' : ''%>>Disk 2 - I/Os Total</option>
+        <option value='ByRx2' <%= metric6 == 'ByRx2' ? 'selected' : ''%>>Disk 2 - Bytes Reads</option>
+        <option value='ByWx2' <%= metric6 == 'ByWx2' ? 'selected' : ''%>>Disk 2 - Bytes Writes</option>
+        <option value='ByTx2' <%= metric6 == 'ByTx2' ? 'selected' : ''%>>Disk 2 - Bytes Totals</option>
+        <option value='BSRx2' <%= metric6 == 'BSRx2' ? 'selected' : ''%>>Disk 2 - Bytes/Sec Reads</option>
+        <option value='BSWx2' <%= metric6 == 'BSWx2' ? 'selected' : ''%>>Disk 2 - Bytes/Sec Writes</option>
+        <option value='Await2' <%= metric6 == 'Await2' ? 'selected' : ''%>>Disk 2 - Await Time </option>
+        <option value='Util2' <%= metric6 == 'Util2' ? 'selected' : ''%>>Disk 2 - % CPU Time</option>
+        <option value='IORx3' <%= metric6 == 'IORx3' ? 'selected' : ''%>>Disk 3 - I/Os Reads</option>
+        <option value='IOWx3' <%= metric6 == 'IOWx3' ? 'selected' : ''%>>Disk 3 - I/Os Writes</option>
+        <option value='IOTx3' <%= metric6 == 'IOTx3' ? 'selected' : ''%>>Disk 3 - I/Os Total</option>
+        <option value='ByRx3' <%= metric6 == 'ByRx3' ? 'selected' : ''%>>Disk 3 - Bytes Reads</option>
+        <option value='ByWx3' <%= metric6 == 'ByWx3' ? 'selected' : ''%>>Disk 3 - Bytes Writes</option>
+        <option value='ByTx3' <%= metric6 == 'ByTx3' ? 'selected' : ''%>>Disk 3 - Bytes Totals</option>
+        <option value='BSRx3' <%= metric6 == 'BSRx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Reads</option>
+        <option value='BSWx3' <%= metric6 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
+        <option value='Await3' <%= metric6 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
+        <option value='Util3' <%= metric6 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
+        </select>
+  </form>
+  <div id="graph_6_container" <%- metric6 == 'None' ? 'style="display:none;"' : '' %> > 
+    <div id="graph_6_graph" > 
+      <div ID="graph_6_spinner" class=<%= spinner6 %> >
+        <img src="images/spinner.gif" />
+      </div>
+    </div>    
+  </div> 
+  <hr>
+</div>
+<div id="dataviz_7">
+  <form method="post">
+    <select id ='server7' name='server7' value='<%= server7 %>' onchange="this.form.submit()" >
+      <%- serverlist7 %>
+    </select>
+    <select id ='metric7' name='metric7' value='<%= metric7 %>' onchange="this.form.submit()" >
+        <option value='None' <%= metric7 == 'None' ? 'selected' : ''%>>None</option>
+        <option value='IORx' <%= metric7 == 'IORx' ? 'selected' : ''%>>IORx - I/Os Reads</option>
+        <option value='IOWx' <%= metric7 == 'IOWx' ? 'selected' : ''%>>IOWx - I/Os Writes</option>
+        <option value='IOTx' <%= metric7 == 'IOTx' ? 'selected' : ''%>>IOTx - I/Os Total</option>
+        <option value='ByRx' <%= metric7 == 'ByRx' ? 'selected' : ''%>>ByRx - Bytes Reads</option>
+        <option value='ByWx' <%= metric7 == 'ByWx' ? 'selected' : ''%>>ByWx - Bytes Writes</option>
+        <option value='ByTx' <%= metric7 == 'ByTx' ? 'selected' : ''%>>ByTx - Bytes Totals</option>
+        <option value='BSRx' <%= metric7 == 'BSRx' ? 'selected' : ''%>>BSRx - Bytes/Sec Reads</option>
+        <option value='BSWx' <%= metric7 == 'BSWx' ? 'selected' : ''%>>BSWx - Bytes/Sec Writes</option>
+        <option value='BSTx' <%= metric7 == 'BSTx' ? 'selected' : ''%>>BSTx - Bytes/Sec Total</option>
+        <option value='LoadU' <%= metric7 == 'LoadU' ? 'selected' : ''%>>LoadU - CPU Load User</option>
+        <option value='LoadS' <%= metric7 == 'LoadS' ? 'selected' : ''%>>LoadS - CPU Load System</option>
+        <option value='LoadI' <%= metric7 == 'LoadI' ? 'selected' : ''%>>LoadI - CPU Load Idle</option>
+        <option value='NetRx' <%= metric7 == 'NetRx' ? 'selected' : ''%>>NetRx - Net Received Bytes</option>
+        <option value='NetTx' <%= metric7 == 'NetTx' ? 'selected' : ''%>>NetTx - Net Transmitted Bytes</option>
+        <option value='MemU' <%= metric7 == 'MemU' ? 'selected' : ''%>>MemU - RAM User</option>
+        <option value='MemF' <%= metric7 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
+        <option value='LoadIO' <%= metric7 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
+        <option value='IORx1' <%= metric7 == 'IORx1' ? 'selected' : ''%>>Disk 1 - I/Os Reads</option>
+        <option value='IOWx1' <%= metric7 == 'IOWx1' ? 'selected' : ''%>>Disk 1 - I/Os Writes</option>
+        <option value='IOTx1' <%= metric7 == 'IOTx1' ? 'selected' : ''%>>Disk 1 - I/Os Total</option>
+        <option value='ByRx1' <%= metric7 == 'ByRx1' ? 'selected' : ''%>>Disk 1 - Bytes Reads</option>
+        <option value='ByWx1' <%= metric7 == 'ByWx1' ? 'selected' : ''%>>Disk 1 - Bytes Writes</option>
+        <option value='ByTx1' <%= metric7 == 'ByTx1' ? 'selected' : ''%>>Disk 1 - Bytes Totals</option>
+        <option value='BSRx1' <%= metric7 == 'BSRx1' ? 'selected' : ''%>>Disk 1 - Bytes/Sec Reads</option>
+        <option value='BSWx1' <%= metric7 == 'BSWx1' ? 'selected' : ''%>>Disk 1 - Bytes/Sec Writes</option>
+        <option value='Await1' <%= metric7 == 'Await1' ? 'selected' : ''%>>Disk 1 - Await Time </option>
+        <option value='Util1' <%= metric7 == 'Util1' ? 'selected' : ''%>>Disk 1 - % CPU Time</option>
+        <option value='IORx2' <%= metric7 == 'IORx2' ? 'selected' : ''%>>Disk 2 - I/Os Reads</option>
+        <option value='IOWx2' <%= metric7 == 'IOWx2' ? 'selected' : ''%>>Disk 2 - I/Os Writes</option>
+        <option value='IOTx2' <%= metric7 == 'IOTx2' ? 'selected' : ''%>>Disk 2 - I/Os Total</option>
+        <option value='ByRx2' <%= metric7 == 'ByRx2' ? 'selected' : ''%>>Disk 2 - Bytes Reads</option>
+        <option value='ByWx2' <%= metric7 == 'ByWx2' ? 'selected' : ''%>>Disk 2 - Bytes Writes</option>
+        <option value='ByTx2' <%= metric7 == 'ByTx2' ? 'selected' : ''%>>Disk 2 - Bytes Totals</option>
+        <option value='BSRx2' <%= metric7 == 'BSRx2' ? 'selected' : ''%>>Disk 2 - Bytes/Sec Reads</option>
+        <option value='BSWx2' <%= metric7 == 'BSWx2' ? 'selected' : ''%>>Disk 2 - Bytes/Sec Writes</option>
+        <option value='Await2' <%= metric7 == 'Await2' ? 'selected' : ''%>>Disk 2 - Await Time </option>
+        <option value='Util2' <%= metric7 == 'Util2' ? 'selected' : ''%>>Disk 2 - % CPU Time</option>
+        <option value='IORx3' <%= metric7 == 'IORx3' ? 'selected' : ''%>>Disk 3 - I/Os Reads</option>
+        <option value='IOWx3' <%= metric7 == 'IOWx3' ? 'selected' : ''%>>Disk 3 - I/Os Writes</option>
+        <option value='IOTx3' <%= metric7 == 'IOTx3' ? 'selected' : ''%>>Disk 3 - I/Os Total</option>
+        <option value='ByRx3' <%= metric7 == 'ByRx3' ? 'selected' : ''%>>Disk 3 - Bytes Reads</option>
+        <option value='ByWx3' <%= metric7 == 'ByWx3' ? 'selected' : ''%>>Disk 3 - Bytes Writes</option>
+        <option value='ByTx3' <%= metric7 == 'ByTx3' ? 'selected' : ''%>>Disk 3 - Bytes Totals</option>
+        <option value='BSRx3' <%= metric7 == 'BSRx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Reads</option>
+        <option value='BSWx3' <%= metric7 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
+        <option value='Await3' <%= metric7 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
+        <option value='Util3' <%= metric7 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
+        </select>
+  </form>
+  <div id="graph_7_container" <%- metric7 == 'None' ? 'style="display:none;"' : '' %> > 
+    <div id="graph_7_graph" > 
+      <div ID="graph_7_spinner" class=<%= spinner7 %> >
+        <img src="images/spinner.gif" />
+      </div>
+    </div>    
+  </div> 
+  <hr>
+</div>
+<div id="dataviz_8">
+  <form method="post">
+    <select id ='server8' name='server8' value='<%= server8 %>' onchange="this.form.submit()" >
+      <%- serverlist8 %>
+    </select>
+    <select id ='metric8' name='metric8' value='<%= metric8 %>' onchange="this.form.submit()" >
+        <option value='None' <%= metric8 == 'None' ? 'selected' : ''%>>None</option>
+        <option value='IORx' <%= metric8 == 'IORx' ? 'selected' : ''%>>IORx - I/Os Reads</option>
+        <option value='IOWx' <%= metric8 == 'IOWx' ? 'selected' : ''%>>IOWx - I/Os Writes</option>
+        <option value='IOTx' <%= metric8 == 'IOTx' ? 'selected' : ''%>>IOTx - I/Os Total</option>
+        <option value='ByRx' <%= metric8 == 'ByRx' ? 'selected' : ''%>>ByRx - Bytes Reads</option>
+        <option value='ByWx' <%= metric8 == 'ByWx' ? 'selected' : ''%>>ByWx - Bytes Writes</option>
+        <option value='ByTx' <%= metric8 == 'ByTx' ? 'selected' : ''%>>ByTx - Bytes Totals</option>
+        <option value='BSRx' <%= metric8 == 'BSRx' ? 'selected' : ''%>>BSRx - Bytes/Sec Reads</option>
+        <option value='BSWx' <%= metric8 == 'BSWx' ? 'selected' : ''%>>BSWx - Bytes/Sec Writes</option>
+        <option value='BSTx' <%= metric8 == 'BSTx' ? 'selected' : ''%>>BSTx - Bytes/Sec Total</option>
+        <option value='LoadU' <%= metric8 == 'LoadU' ? 'selected' : ''%>>LoadU - CPU Load User</option>
+        <option value='LoadS' <%= metric8 == 'LoadS' ? 'selected' : ''%>>LoadS - CPU Load System</option>
+        <option value='LoadI' <%= metric8 == 'LoadI' ? 'selected' : ''%>>LoadI - CPU Load Idle</option>
+        <option value='NetRx' <%= metric8 == 'NetRx' ? 'selected' : ''%>>NetRx - Net Received Bytes</option>
+        <option value='NetTx' <%= metric8 == 'NetTx' ? 'selected' : ''%>>NetTx - Net Transmitted Bytes</option>
+        <option value='MemU' <%= metric8 == 'MemU' ? 'selected' : ''%>>MemU - RAM User</option>
+        <option value='MemF' <%= metric8 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
+        <option value='LoadIO' <%= metric8 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
+        <option value='IORx1' <%= metric8 == 'IORx1' ? 'selected' : ''%>>Disk 1 - I/Os Reads</option>
+        <option value='IOWx1' <%= metric8 == 'IOWx1' ? 'selected' : ''%>>Disk 1 - I/Os Writes</option>
+        <option value='IOTx1' <%= metric8 == 'IOTx1' ? 'selected' : ''%>>Disk 1 - I/Os Total</option>
+        <option value='ByRx1' <%= metric8 == 'ByRx1' ? 'selected' : ''%>>Disk 1 - Bytes Reads</option>
+        <option value='ByWx1' <%= metric8 == 'ByWx1' ? 'selected' : ''%>>Disk 1 - Bytes Writes</option>
+        <option value='ByTx1' <%= metric8 == 'ByTx1' ? 'selected' : ''%>>Disk 1 - Bytes Totals</option>
+        <option value='BSRx1' <%= metric8 == 'BSRx1' ? 'selected' : ''%>>Disk 1 - Bytes/Sec Reads</option>
+        <option value='BSWx1' <%= metric8 == 'BSWx1' ? 'selected' : ''%>>Disk 1 - Bytes/Sec Writes</option>
+        <option value='Await1' <%= metric8 == 'Await1' ? 'selected' : ''%>>Disk 1 - Await Time </option>
+        <option value='Util1' <%= metric8 == 'Util1' ? 'selected' : ''%>>Disk 1 - % CPU Time</option>
+        <option value='IORx2' <%= metric8 == 'IORx2' ? 'selected' : ''%>>Disk 2 - I/Os Reads</option>
+        <option value='IOWx2' <%= metric8 == 'IOWx2' ? 'selected' : ''%>>Disk 2 - I/Os Writes</option>
+        <option value='IOTx2' <%= metric8 == 'IOTx2' ? 'selected' : ''%>>Disk 2 - I/Os Total</option>
+        <option value='ByRx2' <%= metric8 == 'ByRx2' ? 'selected' : ''%>>Disk 2 - Bytes Reads</option>
+        <option value='ByWx2' <%= metric8 == 'ByWx2' ? 'selected' : ''%>>Disk 2 - Bytes Writes</option>
+        <option value='ByTx2' <%= metric8 == 'ByTx2' ? 'selected' : ''%>>Disk 2 - Bytes Totals</option>
+        <option value='BSRx2' <%= metric8 == 'BSRx2' ? 'selected' : ''%>>Disk 2 - Bytes/Sec Reads</option>
+        <option value='BSWx2' <%= metric8 == 'BSWx2' ? 'selected' : ''%>>Disk 2 - Bytes/Sec Writes</option>
+        <option value='Await2' <%= metric8 == 'Await2' ? 'selected' : ''%>>Disk 2 - Await Time </option>
+        <option value='Util2' <%= metric8 == 'Util2' ? 'selected' : ''%>>Disk 2 - % CPU Time</option>
+        <option value='IORx3' <%= metric8 == 'IORx3' ? 'selected' : ''%>>Disk 3 - I/Os Reads</option>
+        <option value='IOWx3' <%= metric8 == 'IOWx3' ? 'selected' : ''%>>Disk 3 - I/Os Writes</option>
+        <option value='IOTx3' <%= metric8 == 'IOTx3' ? 'selected' : ''%>>Disk 3 - I/Os Total</option>
+        <option value='ByRx3' <%= metric8 == 'ByRx3' ? 'selected' : ''%>>Disk 3 - Bytes Reads</option>
+        <option value='ByWx3' <%= metric8 == 'ByWx3' ? 'selected' : ''%>>Disk 3 - Bytes Writes</option>
+        <option value='ByTx3' <%= metric8 == 'ByTx3' ? 'selected' : ''%>>Disk 3 - Bytes Totals</option>
+        <option value='BSRx3' <%= metric8 == 'BSRx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Reads</option>
+        <option value='BSWx3' <%= metric8 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
+        <option value='Await3' <%= metric8 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
+        <option value='Util3' <%= metric8 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
+        </select>
+  </form>
+  <div id="graph_8_container" <%- metric8 == 'None' ? 'style="display:none;"' : '' %> > 
+    <div id="graph_8_graph" > 
+      <div ID="graph_8_spinner" class=<%= spinner8 %> >
+        <img src="images/spinner.gif" />
+      </div>
+    </div>    
+  </div> 
+  <hr>
 </div>
 
 <script>
-
   var dataset1 = [<%= pdata1 %>];
   var dataset2 = [<%= pdata2 %>];
   var dataset3 = [<%= pdata3 %>];
+  var dataset4 = [<%= pdata4 %>];
+  var dataset5 = [<%= pdata5 %>];
+  var dataset6 = [<%= pdata6 %>];
+  var dataset7 = [<%= pdata7 %>];
+  var dataset8 = [<%= pdata8 %>];
 
   var parseTime = d3.timeParse("%Y%m%d%H%M%S");
 
@@ -263,15 +606,65 @@ Refresh Rate:
     .sort(function (a, b) {
       return d3.ascending(a.date, b.date);
     });
+    var data4 = dataset4
+    .map(function (d) {
+      return {
+        date: parseTime(d.ts),
+        value: d.metric
+      };
+    })
+    .sort(function (a, b) {
+      return d3.ascending(a.date, b.date);
+    });
+    var data5 = dataset5
+    .map(function (d) {
+      return {
+        date: parseTime(d.ts),
+        value: d.metric
+      };
+    })
+    .sort(function (a, b) {
+      return d3.ascending(a.date, b.date);
+    });
+    var data6 = dataset6
+    .map(function (d) {
+      return {
+        date: parseTime(d.ts),
+        value: d.metric
+      };
+    })
+    .sort(function (a, b) {
+      return d3.ascending(a.date, b.date);
+    });
+    var data7 = dataset7
+    .map(function (d) {
+      return {
+        date: parseTime(d.ts),
+        value: d.metric
+      };
+    })
+    .sort(function (a, b) {
+      return d3.ascending(a.date, b.date);
+    });
+    var data8 = dataset8
+    .map(function (d) {
+      return {
+        date: parseTime(d.ts),
+        value: d.metric
+      };
+    })
+    .sort(function (a, b) {
+      return d3.ascending(a.date, b.date);
+    });
 
   // set the dimensions and margins of the graph
   var margin = { top: 10, right: 30, bottom: 30, left: 100 },
-    width = parseInt(d3.select("#my_dataviz_1").style('width'), 10);
+    width = parseInt(d3.select("#dataviz_1").style('width'), 10);
   width = width - margin.left - margin.right,
     height = 200 - margin.top - margin.bottom;
 
   // append the svg1 object to the body of the page
-  var svg1 = d3.select("#my_dataviz_1")
+  var svg1 = d3.select("#graph_1_graph")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -306,7 +699,7 @@ svg1.append("path")
         )
 
   // append the svg2 object to the body of the page
-  var svg2 = d3.select("#my_dataviz_2")
+  var svg2 = d3.select("#graph_2_graph")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -341,7 +734,7 @@ svg1.append("path")
         )
 
   // append the svg3 object to the body of the page
-  var svg3 = d3.select("#my_dataviz_3")
+  var svg3 = d3.select("#graph_3_graph")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -367,6 +760,181 @@ svg1.append("path")
   // Add the line
   svg3.append("path")
       .datum(data3)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 3)
+      .attr("d", d3.line()
+        .x(function(d) { return x(d.date) })
+        .y(function(d) { return y(d.value) })
+        )
+
+  // append the svg4 object to the body of the page
+  var svg4 = d3.select("#graph_4_graph")
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform",
+      "translate(" + margin.left + "," + margin.top + ")");
+
+  // Add X axis --> it is a date format
+  var x = d3.scaleTime()
+    .domain(d3.extent(data4, function (d) { return d.date; }))
+    .range([0, width]);
+  xAxis = svg4.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([0, d3.max(data4, function (d) { return +d.value; })])
+    .range([height, 0]);
+  yAxis = svg4.append("g")
+    .call(d3.axisLeft(y));
+
+  // Add the line
+  svg4.append("path")
+      .datum(data4)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 3)
+      .attr("d", d3.line()
+        .x(function(d) { return x(d.date) })
+        .y(function(d) { return y(d.value) })
+        )
+
+// append the svg5 object to the body of the page
+  var svg5 = d3.select("#graph_5_graph")
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform",
+      "translate(" + margin.left + "," + margin.top + ")");
+
+  // Add X axis --> it is a date format
+  var x = d3.scaleTime()
+    .domain(d3.extent(data5, function (d) { return d.date; }))
+    .range([0, width]);
+  xAxis = svg5.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([0, d3.max(data5, function (d) { return +d.value; })])
+    .range([height, 0]);
+  yAxis = svg5.append("g")
+    .call(d3.axisLeft(y));
+
+  // Add the line
+  svg5.append("path")
+      .datum(data5)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 3)
+      .attr("d", d3.line()
+        .x(function(d) { return x(d.date) })
+        .y(function(d) { return y(d.value) })
+        )
+
+  // append the svg6 object to the body of the page
+  var svg6 = d3.select("#graph_6_graph")
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform",
+      "translate(" + margin.left + "," + margin.top + ")");
+
+  // Add X axis --> it is a date format
+  var x = d3.scaleTime()
+    .domain(d3.extent(data6, function (d) { return d.date; }))
+    .range([0, width]);
+  xAxis = svg6.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([0, d3.max(data6, function (d) { return +d.value; })])
+    .range([height, 0]);
+  yAxis = svg6.append("g")
+    .call(d3.axisLeft(y));
+
+  // Add the line
+  svg6.append("path")
+      .datum(data6)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 3)
+      .attr("d", d3.line()
+        .x(function(d) { return x(d.date) })
+        .y(function(d) { return y(d.value) })
+        )
+
+  // append the svg7 object to the body of the page
+  var svg7 = d3.select("#graph_7_graph")
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform",
+      "translate(" + margin.left + "," + margin.top + ")");
+
+  // Add X axis --> it is a date format
+  var x = d3.scaleTime()
+    .domain(d3.extent(data7, function (d) { return d.date; }))
+    .range([0, width]);
+  xAxis = svg7.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([0, d3.max(data7, function (d) { return +d.value; })])
+    .range([height, 0]);
+  yAxis = svg7.append("g")
+    .call(d3.axisLeft(y));
+
+  // Add the line
+  svg7.append("path")
+      .datum(data7)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 3)
+      .attr("d", d3.line()
+        .x(function(d) { return x(d.date) })
+        .y(function(d) { return y(d.value) })
+        )
+
+  // append the svg8 object to the body of the page
+  var svg8 = d3.select("#graph_8_graph")
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform",
+      "translate(" + margin.left + "," + margin.top + ")");
+
+  // Add X axis --> it is a date format
+  var x = d3.scaleTime()
+    .domain(d3.extent(data8, function (d) { return d.date; }))
+    .range([0, width]);
+  xAxis = svg8.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x));
+
+  // Add Y axis
+  var y = d3.scaleLinear()
+    .domain([0, d3.max(data8, function (d) { return +d.value; })])
+    .range([height, 0]);
+  yAxis = svg8.append("g")
+    .call(d3.axisLeft(y));
+
+  // Add the line
+  svg8.append("path")
+      .datum(data8)
       .attr("fill", "none")
       .attr("stroke", "steelblue")
       .attr("stroke-width", 3)

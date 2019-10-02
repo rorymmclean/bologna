@@ -25,10 +25,10 @@
   right: 10px;
 }
 
-#my_dataviz_1, #my_dataviz_2, #my_dataviz_3 {
+#dataviz_1, #dataviz_2, #dataviz_3, #dataviz_4, #dataviz_5, #dataviz_6, #dataviz_7, #dataviz_8 {
   position: relative;
 }
-#spinner1, #spinner2, #spinner3 {
+#graph_1_spinner, #graph_2_spinner, #graph_3_spinner, #graph_4_spinner, #graph_5_spinner, #graph_6_spinner, #graph_7_spinner, #graph_8_spinner {
   position: absolute;
   top: 20%;
   left: 40%;
