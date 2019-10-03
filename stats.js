@@ -40,9 +40,6 @@ var old_diskio_total = 0
 var old_fsstats_read = 0
 var old_fsstats_write = 0
 var old_fsstats_total = 0
-var old_load_user = 0
-var old_load_system = 0
-var old_load_idle = 0
 var old_net_rx_bytes = 0
 var old_net_tx_bytes = 0
 
@@ -61,7 +58,7 @@ var new_net_rx_bytes = 0
 var new_net_tx_bytes = 0
 
 si.getDynamicData()
-  .then (data => {
+  .then(data => {
     old_diskio_read = data.disksIO['rIO']
     old_diskio_write = data.disksIO['wIO']
     old_diskio_total = data.disksIO['tIO']
@@ -76,7 +73,7 @@ sleep(10000)
 
 while (1) {
   si.getDynamicData()
-    .then (data => {
+    .then(data => {
       new_diskio_read = data.disksIO['rIO']
       new_diskio_write = data.disksIO['wIO']
       new_diskio_total = data.disksIO['tIO']

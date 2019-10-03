@@ -1,6 +1,6 @@
 var request = require('sync-request')
 var sleep = require('system-sleep')
-var counter=0
+var counter = 0
 
 // Spreading the pain across multiple web sites //
 var urls = [
@@ -20,11 +20,11 @@ var urls = [
   'https://www.ebay.com/',
   'https://www.walmart.com/',
   'https://www.walmart.com/',
-  'http://worldslongestwebsite.com/',
+  'http://worldslongestwebsite.com/'
 ]
 
 function randomInt (low, high) {
- return Math.floor(Math.random() * (high - low) + low)
+  return Math.floor(Math.random() * (high - low) + low)
 }
 
 var loopSpeed = 10
@@ -35,9 +35,9 @@ if (process.env.SB_SLEEP) {
 }
 
 while (1) {
-  unbr = randomInt(0, urls.length)
+  var unbr = randomInt(0, urls.length)
   try {
-    res = request('GET',urls[unbr])
+    var res = request('GET', urls[unbr])
     counter += 1
     // console.log('Reqests: '+counter+' length='+res.getBody('utf8').length)
     sleep(loopSpeed)

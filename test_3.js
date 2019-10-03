@@ -2,7 +2,7 @@ var filesystem = require('fs')
 var spawnSync = require('child_process').spawnSync
 
 const homedir = require('os').homedir()
-var testpath = homedir+'/TESTMNT/'
+var testpath = homedir + '/TESTMNT/'
 if (process.env.SB_PATH) {
   testpath = process.env.SB_PATH
 } else if (process.env.sb_path) {
