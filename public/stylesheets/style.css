@@ -20,7 +20,7 @@
   color: #01252b;
 }
 .divrf {
-  position: fixed;
+  position: absolute;
   top: 32px;
   right: 10px;
 }

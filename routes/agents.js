@@ -47,8 +47,8 @@ router.get('/', function (req, res) {
           } 
       }
       res.render('agents', {
-        page:'Home', 
-        menuId:'home',
+        page:'Agents', 
+        menuId:'agents',
         pcount1: pcount1,
         pcount2: pcount2,
         pcount3: pcount3,

@@ -3,8 +3,16 @@
           <a class="navbar-brand" href="/"><h2>Sliced Bologna</h2></a>
         </div>
         <div class="col-4 text-center">
-          <a class="navbar-brand" href="/">Metrics</a>
-          <a class="navbar-brand" href="/agents">Slices</a>
+          <a class="navbar-brand" href="/">
+            <button type="button" class="btn <%- menuId == 'home' ? 'btn-light' : 'btn-secondary'%>" >
+              Metrics
+            </button>
+          </a>
+          <a class="navbar-brand" href="/agents">
+            <button type="button" class="btn <%- menuId == 'agents' ? 'btn-light' : 'btn-secondary'%>" >
+              Slices
+            </button>
+          </a>
         </div>
         <div class="col-4">
             &nbsp;
