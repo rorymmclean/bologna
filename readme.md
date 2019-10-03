@@ -60,11 +60,24 @@ To launch bolony slices click on the "Slices" link in the menu bar.
 
 ![Agents Screen](https://raw.githubusercontent.com/rorymmclean/bologna/master/public/images/Picture2.jpg "Agents Screen")
 
-On this screen click the up and down arrows to add and remove agents. The tests have been designed to duplicate certain patterns but can be combined any way you wish. Slice #1 is a pattern a database tends to generate. I find that 5 or 6 of these slices is enough to flood my laptops IO bandwidth. Slice #2 is a lot of small read and writes. Unlike #1, the writes aren't cached. Slice #3 creates a 1GB file and then reads it like the server is providing streaming media. Slice #4 has no CPU. It consumes the CPU with an algorithm for calculating PI. Slice #5 randomly hits a variety of web sites to consume the network bandwidth. 
+On this screen click the up and down arrows to add and remove agents. The tests have been designed to duplicate certain patterns but can be combined any way you wish. 
+1. Slice #1 is a pattern a database tends to generate. I find that 5 or 6 of these slices is enough to flood my laptops IO bandwidth. 
+2. Slice #2 is a lot of small read and writes. Unlike #1, the writes aren't cached. 
+3. Slice #3 creates a 1GB file and then reads it like the server is providing streaming media. 
+4. Slice #4 has no CPU. It consumes the CPU with an algorithm for calculating PI. 
+5. Slice #5 randomly hits a variety of web sites to consume the network bandwidth. 
+
+Files created during the testing process are stored by default in the *~/TESTMNT* directory. This can be overridden by the environmental variable **SB_PATH**. Set this value to the target directory ending with a final "/" such as `export SB_PATH=/volumes/flashdrive/`
+
+Tests #1, #2, and #5 add a sleep command between each loop. This defaults to 10ms. I don't recommend reducing this since you can always add more slices to increase load, but if even one load is more than you want to create you can set the environmental variable **SB_SLEEP** to some value greater than 10.
+
+## Clean up
 
 To kill the stats collector find the PID using the command `ps | grep node` and `kill `*pid#*` `
 
-If you want to clean up your Redis database you can remove the docker container or run a Redis IDE like redis-commander.
+If you want to clean up your Redis database you can remove the docker container or run a Redis IDE like redis-commander. 
+
+You will need to clean up your target directory ("*~/TESTMNT*" or your custom setting) manually.
 
 ## Contributing
 
