@@ -892,7 +892,8 @@ svg1.append("path")
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, d3.max(data7, function (d) { return +d.value; })])
+    .domain([d3.min(data7, function (d) { return +d.value; }), 
+             d3.max(data7, function (d) { return +d.value; })])
     .range([height, 0]);
   yAxis = svg7.append("g")
     .call(d3.axisLeft(y));
@@ -927,7 +928,8 @@ svg1.append("path")
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, d3.max(data8, function (d) { return +d.value; })])
+    .domain([d3.min(data8, function (d) { return +d.value; }), 
+             d3.max(data8, function (d) { return +d.value; })])
     .range([height, 0]);
   yAxis = svg8.append("g")
     .call(d3.axisLeft(y));
