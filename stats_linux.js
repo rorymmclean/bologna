@@ -28,6 +28,13 @@ if (process.env.SB_IP) {
   redisIP = process.env.sb_ip
 }
 
+var stats_wait = 10
+if (process.env.SB_STATS) {
+  stats_wait = process.env.SB_STATS
+} else if (process.env.sb_stats) {
+  stats_wait = process.env.sb_stats
+}
+
 console.log(redisPort)
 console.log(redisIP)
 
@@ -41,7 +48,7 @@ client.on('connect', function () {
   console.log('connected to ' + redisIP + ':' + redisPort)
 })
 
-iostat(['-x', '-m', '10']).on('data', function (err, stats) {
+iostat(['-x', '-m', stats_wait]).on('data', function (err, stats) {
   var diskio_1_read = 0
   var diskio_1_write = 0
   var diskio_1_total = 0
@@ -85,11 +92,11 @@ iostat(['-x', '-m', '10']).on('data', function (err, stats) {
   var mydrive = stats.devices
   // drive 1
   if (Object.keys(mydrive).length >= 1) {
-    diskio_1_read = setToZero(stats.devices[Object.keys(mydrive)[0]]['r/s']) * 10
-    diskio_1_write = setToZero(stats.devices[Object.keys(mydrive)[0]]['w/s']) * 10
+    diskio_1_read = setToZero(stats.devices[Object.keys(mydrive)[0]]['r/s']) * stats_wait
+    diskio_1_write = setToZero(stats.devices[Object.keys(mydrive)[0]]['w/s']) * stats_wait
     diskio_1_total = diskio_1_read + diskio_1_write
-    diskkb_1_read = setToZero(stats.devices[Object.keys(mydrive)[0]]['rMB/s']) * 10
-    diskkb_1_write = setToZero(stats.devices[Object.keys(mydrive)[0]]['wMB/s']) * 10
+    diskkb_1_read = setToZero(stats.devices[Object.keys(mydrive)[0]]['rMB/s']) * stats_wait
+    diskkb_1_write = setToZero(stats.devices[Object.keys(mydrive)[0]]['wMB/s']) * stats_wait
     diskkb_1_total = diskkb_1_read + diskkb_1_write
     diskkbs_1_read = setToZero(stats.devices[Object.keys(mydrive)[0]]['rMB/s'])
     diskkbs_1_write = setToZero(stats.devices[Object.keys(mydrive)[0]]['wMB/s'])
@@ -100,11 +107,11 @@ iostat(['-x', '-m', '10']).on('data', function (err, stats) {
   }
   // drive 2
   if (Object.keys(mydrive).length >= 2) {
-    diskio_2_read = setToZero(stats.devices[Object.keys(mydrive)[1]]['r/s'] * 10)
-    diskio_2_write = setToZero(stats.devices[Object.keys(mydrive)[1]]['w/s'] * 10)
+    diskio_2_read = setToZero(stats.devices[Object.keys(mydrive)[1]]['r/s'] * stats_wait)
+    diskio_2_write = setToZero(stats.devices[Object.keys(mydrive)[1]]['w/s'] * stats_wait)
     diskio_2_total = diskio_2_read + diskio_2_write
-    diskkb_2_read = setToZero(stats.devices[Object.keys(mydrive)[1]]['rMB/s'] * 10)
-    diskkb_2_write = setToZero(stats.devices[Object.keys(mydrive)[1]]['wMB/s'] * 10)
+    diskkb_2_read = setToZero(stats.devices[Object.keys(mydrive)[1]]['rMB/s'] * stats_wait)
+    diskkb_2_write = setToZero(stats.devices[Object.keys(mydrive)[1]]['wMB/s'] * stats_wait)
     diskkb_2_total = diskkb_2_read + diskkb_2_write
     diskkbs_2_read = setToZero(stats.devices[Object.keys(mydrive)[1]]['rMB/s'])
     diskkbs_2_write = setToZero(stats.devices[Object.keys(mydrive)[1]]['wMB/s'])
@@ -115,11 +122,11 @@ iostat(['-x', '-m', '10']).on('data', function (err, stats) {
   }
   // drive 3
   if (Object.keys(mydrive).length >= 3) {
-    diskio_3_read = setToZero(stats.devices[Object.keys(mydrive)[2]]['r/s'] * 10)
-    diskio_3_write = setToZero(stats.devices[Object.keys(mydrive)[2]]['w/s'] * 10)
+    diskio_3_read = setToZero(stats.devices[Object.keys(mydrive)[2]]['r/s'] * stats_wait)
+    diskio_3_write = setToZero(stats.devices[Object.keys(mydrive)[2]]['w/s'] * stats_wait)
     diskio_3_total = diskio_3_read + diskio_3_write
-    diskkb_3_read = setToZero(stats.devices[Object.keys(mydrive)[2]]['rMB/s'] * 10)
-    diskkb_3_write = setToZero(stats.devices[Object.keys(mydrive)[2]]['wMB/s'] * 10)
+    diskkb_3_read = setToZero(stats.devices[Object.keys(mydrive)[2]]['rMB/s'] * stats_wait)
+    diskkb_3_write = setToZero(stats.devices[Object.keys(mydrive)[2]]['wMB/s'] * stats_wait)
     diskkb_3_total = diskkb_3_read + diskkb_3_write
     diskkbs_3_read = setToZero(stats.devices[Object.keys(mydrive)[2]]['rMB/s'])
     diskkbs_3_write = setToZero(stats.devices[Object.keys(mydrive)[2]]['wMB/s'])

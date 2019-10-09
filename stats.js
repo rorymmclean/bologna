@@ -21,6 +21,14 @@ if (process.env.SB_IP) {
   redisIP = process.env.sb_ip
 }
 
+var stats_wait = 10
+if (process.env.SB_STATS) {
+  stats_wait = process.env.SB_STATS
+} else if (process.env.sb_stats) {
+  stats_wait = process.env.sb_stats
+}
+
+
 console.log(redisPort)
 console.log(redisIP)
 
@@ -69,7 +77,7 @@ si.getDynamicData()
     old_net_tx_bytes = data.networkStats[0]['tx_bytes']
   })
 
-sleep(10000)
+sleep(stats_wait)
 
 while (1) {
   si.getDynamicData()
@@ -93,11 +101,11 @@ while (1) {
       var ByRx = (new_fsstats_read - old_fsstats_read)
       var ByWx = (new_fsstats_write - old_fsstats_write)
       var ByTx = (new_fsstats_total - old_fsstats_total)
-      var BSRx = Math.round(((new_fsstats_read - old_fsstats_read) / 10))
-      var BSWx = Math.round(((new_fsstats_write - old_fsstats_write) / 10))
-      var BSTx = Math.round(((new_fsstats_total - old_fsstats_total) / 10))
-      var NetRx = Math.round(((new_net_rx_bytes - old_net_rx_bytes) / 10))
-      var NetTx = Math.round(((new_net_tx_bytes - old_net_tx_bytes) / 10))
+      var BSRx = Math.round(((new_fsstats_read - old_fsstats_read) / stats_wait / 1000))
+      var BSWx = Math.round(((new_fsstats_write - old_fsstats_write) / stats_wait / 1000))
+      var BSTx = Math.round(((new_fsstats_total - old_fsstats_total) / stats_wait / 1000))
+      var NetRx = Math.round(((new_net_rx_bytes - old_net_rx_bytes) / stats_wait / 1000))
+      var NetTx = Math.round(((new_net_tx_bytes - old_net_tx_bytes) / stats_wait / 1000))
       redisKey = moment().format('YYYYMMDDHHmmss')
       client.hmset(testhost + ':' + redisKey,
         'IORx', IORx, 'IOWx', IOWx, 'IOTx', IOTx,
@@ -127,7 +135,7 @@ while (1) {
       old_net_rx_bytes = data.networkStats[0]['rx_bytes']
       old_net_tx_bytes = data.networkStats[0]['tx_bytes']
     })
-  sleep(10000)
+  sleep(stats_wait)
 }
 
 process.exit(1)
