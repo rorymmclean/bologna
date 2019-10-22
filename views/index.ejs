@@ -66,7 +66,7 @@ Refresh Rate:
       <option value='NetTx' <%= metric1 == 'NetTx' ? 'selected' : ''%>>NetTx - Net Transmitted Bytes</option>
       <option value='MemU' <%= metric1 == 'MemU' ? 'selected' : ''%>>MemU - RAM User</option>
       <option value='MemF' <%= metric1 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
-      <option value='LoadIO' <%= metric1 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
+<!--      <option value='LoadIO' <%= metric1 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
       <option value='IORx1' <%= metric1 == 'IORx1' ? 'selected' : ''%>>Disk 1 - I/Os Reads</option>
       <option value='IOWx1' <%= metric1 == 'IOWx1' ? 'selected' : ''%>>Disk 1 - I/Os Writes</option>
       <option value='IOTx1' <%= metric1 == 'IOTx1' ? 'selected' : ''%>>Disk 1 - I/Os Total</option>
@@ -97,6 +97,7 @@ Refresh Rate:
       <option value='BSWx3' <%= metric1 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
       <option value='Await3' <%= metric1 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
       <option value='Util3' <%= metric1 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
+-->
     </select>&nbsp;
     <input type="radio" name="nz_1" value="0" onchange="this.form.submit()" <%= nz1 == '0' ? 'checked' : ''%> > Zero 
     <input type="radio" name="nz_1" value="d3.min(data1, function (d) { return +d.value; })" onchange="this.form.submit()" <%= nz1 != '0' ? 'checked' : ''%> > Min 
@@ -133,7 +134,7 @@ Refresh Rate:
         <option value='NetTx' <%= metric2 == 'NetTx' ? 'selected' : ''%>>NetTx - Net Transmitted Bytes</option>
         <option value='MemU' <%= metric2 == 'MemU' ? 'selected' : ''%>>MemU - RAM User</option>
         <option value='MemF' <%= metric2 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
-        <option value='LoadIO' <%= metric2 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
+<!--        <option value='LoadIO' <%= metric2 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
         <option value='IORx1' <%= metric2 == 'IORx1' ? 'selected' : ''%>>Disk 1 - I/Os Reads</option>
         <option value='IOWx1' <%= metric2 == 'IOWx1' ? 'selected' : ''%>>Disk 1 - I/Os Writes</option>
         <option value='IOTx1' <%= metric2 == 'IOTx1' ? 'selected' : ''%>>Disk 1 - I/Os Total</option>
@@ -164,7 +165,7 @@ Refresh Rate:
         <option value='BSWx3' <%= metric2 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
         <option value='Await3' <%= metric2 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
         <option value='Util3' <%= metric2 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
-      </select>&nbsp;
+-->      </select>&nbsp;
       <input type="radio" name="nz_2" value="0" onchange="this.form.submit()" <%= nz2 == '0' ? 'checked' : ''%> > Zero 
       <input type="radio" name="nz_2" value="d3.min(data2, function (d) { return +d.value; })" onchange="this.form.submit()" <%= nz2 != '0' ? 'checked' : ''%> > Min 
     </form>
@@ -200,7 +201,7 @@ Refresh Rate:
         <option value='NetTx' <%= metric3 == 'NetTx' ? 'selected' : ''%>>NetTx - Net Transmitted Bytes</option>
         <option value='MemU' <%= metric3 == 'MemU' ? 'selected' : ''%>>MemU - RAM User</option>
         <option value='MemF' <%= metric3 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
-        <option value='LoadIO' <%= metric3 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
+<!--        <option value='LoadIO' <%= metric3 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
         <option value='IORx1' <%= metric3 == 'IORx1' ? 'selected' : ''%>>Disk 1 - I/Os Reads</option>
         <option value='IOWx1' <%= metric3 == 'IOWx1' ? 'selected' : ''%>>Disk 1 - I/Os Writes</option>
         <option value='IOTx1' <%= metric3 == 'IOTx1' ? 'selected' : ''%>>Disk 1 - I/Os Total</option>
@@ -231,7 +232,7 @@ Refresh Rate:
         <option value='BSWx3' <%= metric3 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
         <option value='Await3' <%= metric3 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
         <option value='Util3' <%= metric3 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
-      </select>&nbsp;
+-->      </select>&nbsp;
       <input type="radio" name="nz_3" value="0" onchange="this.form.submit()" <%= nz3 == '0' ? 'checked' : ''%> > Zero 
       <input type="radio" name="nz_3" value="d3.min(data3, function (d) { return +d.value; })" onchange="this.form.submit()" <%= nz3 != '0' ? 'checked' : ''%> > Min 
     </form>
@@ -267,7 +268,7 @@ Refresh Rate:
         <option value='NetTx' <%= metric4 == 'NetTx' ? 'selected' : ''%>>NetTx - Net Transmitted Bytes</option>
         <option value='MemU' <%= metric4 == 'MemU' ? 'selected' : ''%>>MemU - RAM User</option>
         <option value='MemF' <%= metric4 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
-        <option value='LoadIO' <%= metric4 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
+<!--        <option value='LoadIO' <%= metric4 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
         <option value='IORx1' <%= metric4 == 'IORx1' ? 'selected' : ''%>>Disk 1 - I/Os Reads</option>
         <option value='IOWx1' <%= metric4 == 'IOWx1' ? 'selected' : ''%>>Disk 1 - I/Os Writes</option>
         <option value='IOTx1' <%= metric4 == 'IOTx1' ? 'selected' : ''%>>Disk 1 - I/Os Total</option>
@@ -298,7 +299,7 @@ Refresh Rate:
         <option value='BSWx3' <%= metric4 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
         <option value='Await3' <%= metric4 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
         <option value='Util3' <%= metric4 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
-      </select>&nbsp;
+-->      </select>&nbsp;
       <input type="radio" name="nz_4" value="0" onchange="this.form.submit()" <%= nz4 == '0' ? 'checked' : ''%> > Zero 
       <input type="radio" name="nz_4" value="d3.min(data4, function (d) { return +d.value; })" onchange="this.form.submit()" <%= nz4 != '0' ? 'checked' : ''%> > Min 
     </form>
@@ -334,7 +335,7 @@ Refresh Rate:
         <option value='NetTx' <%= metric5 == 'NetTx' ? 'selected' : ''%>>NetTx - Net Transmitted Bytes</option>
         <option value='MemU' <%= metric5 == 'MemU' ? 'selected' : ''%>>MemU - RAM User</option>
         <option value='MemF' <%= metric5 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
-        <option value='LoadIO' <%= metric5 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
+<!--        <option value='LoadIO' <%= metric5 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
         <option value='IORx1' <%= metric5 == 'IORx1' ? 'selected' : ''%>>Disk 1 - I/Os Reads</option>
         <option value='IOWx1' <%= metric5 == 'IOWx1' ? 'selected' : ''%>>Disk 1 - I/Os Writes</option>
         <option value='IOTx1' <%= metric5 == 'IOTx1' ? 'selected' : ''%>>Disk 1 - I/Os Total</option>
@@ -365,7 +366,7 @@ Refresh Rate:
         <option value='BSWx3' <%= metric5 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
         <option value='Await3' <%= metric5 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
         <option value='Util3' <%= metric5 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
-      </select>&nbsp;
+-->      </select>&nbsp;
       <input type="radio" name="nz_5" value="0" onchange="this.form.submit()" <%= nz5 == '0' ? 'checked' : ''%> > Zero 
       <input type="radio" name="nz_5" value="d3.min(data5, function (d) { return +d.value; })" onchange="this.form.submit()" <%= nz5 != '0' ? 'checked' : ''%> > Min 
     </form>
@@ -401,7 +402,7 @@ Refresh Rate:
         <option value='NetTx' <%= metric6 == 'NetTx' ? 'selected' : ''%>>NetTx - Net Transmitted Bytes</option>
         <option value='MemU' <%= metric6 == 'MemU' ? 'selected' : ''%>>MemU - RAM User</option>
         <option value='MemF' <%= metric6 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
-        <option value='LoadIO' <%= metric6 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
+<!--        <option value='LoadIO' <%= metric6 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
         <option value='IORx1' <%= metric6 == 'IORx1' ? 'selected' : ''%>>Disk 1 - I/Os Reads</option>
         <option value='IOWx1' <%= metric6 == 'IOWx1' ? 'selected' : ''%>>Disk 1 - I/Os Writes</option>
         <option value='IOTx1' <%= metric6 == 'IOTx1' ? 'selected' : ''%>>Disk 1 - I/Os Total</option>
@@ -432,7 +433,7 @@ Refresh Rate:
         <option value='BSWx3' <%= metric6 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
         <option value='Await3' <%= metric6 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
         <option value='Util3' <%= metric6 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
-      </select>&nbsp;
+-->      </select>&nbsp;
       <input type="radio" name="nz_6" value="0" onchange="this.form.submit()" <%= nz6 == '0' ? 'checked' : ''%> > Zero 
       <input type="radio" name="nz_6" value="d3.min(data6, function (d) { return +d.value; })" onchange="this.form.submit()" <%= nz6 != '0' ? 'checked' : ''%> > Min 
     </form>
@@ -468,7 +469,7 @@ Refresh Rate:
         <option value='NetTx' <%= metric7 == 'NetTx' ? 'selected' : ''%>>NetTx - Net Transmitted Bytes</option>
         <option value='MemU' <%= metric7 == 'MemU' ? 'selected' : ''%>>MemU - RAM User</option>
         <option value='MemF' <%= metric7 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
-        <option value='LoadIO' <%= metric7 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
+<!--        <option value='LoadIO' <%= metric7 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
         <option value='IORx1' <%= metric7 == 'IORx1' ? 'selected' : ''%>>Disk 1 - I/Os Reads</option>
         <option value='IOWx1' <%= metric7 == 'IOWx1' ? 'selected' : ''%>>Disk 1 - I/Os Writes</option>
         <option value='IOTx1' <%= metric7 == 'IOTx1' ? 'selected' : ''%>>Disk 1 - I/Os Total</option>
@@ -499,7 +500,7 @@ Refresh Rate:
         <option value='BSWx3' <%= metric7 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
         <option value='Await3' <%= metric7 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
         <option value='Util3' <%= metric7 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
-      </select>&nbsp;
+-->      </select>&nbsp;
       <input type="radio" name="nz_7" value="0" onchange="this.form.submit()" <%= nz7 == '0' ? 'checked' : ''%> > Zero 
       <input type="radio" name="nz_7" value="d3.min(data7, function (d) { return +d.value; })" onchange="this.form.submit()" <%= nz7 != '0' ? 'checked' : ''%> > Min 
 </form>
@@ -535,7 +536,7 @@ Refresh Rate:
         <option value='NetTx' <%= metric8 == 'NetTx' ? 'selected' : ''%>>NetTx - Net Transmitted Bytes</option>
         <option value='MemU' <%= metric8 == 'MemU' ? 'selected' : ''%>>MemU - RAM User</option>
         <option value='MemF' <%= metric8 == 'MemF' ? 'selected' : ''%>>MemF - RAM Free</option>
-        <option value='LoadIO' <%= metric8 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
+<!--        <option value='LoadIO' <%= metric8 == 'LoadIO' ? 'selected' : ''%>>LoadIO - CPU Load for IOs</option>
         <option value='IORx1' <%= metric8 == 'IORx1' ? 'selected' : ''%>>Disk 1 - I/Os Reads</option>
         <option value='IOWx1' <%= metric8 == 'IOWx1' ? 'selected' : ''%>>Disk 1 - I/Os Writes</option>
         <option value='IOTx1' <%= metric8 == 'IOTx1' ? 'selected' : ''%>>Disk 1 - I/Os Total</option>
@@ -566,7 +567,7 @@ Refresh Rate:
         <option value='BSWx3' <%= metric8 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
         <option value='Await3' <%= metric8 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
         <option value='Util3' <%= metric8 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
-        </select>&nbsp;
+-->        </select>&nbsp;
         <input type="radio" name="nz_8" value="0" onchange="this.form.submit()" <%= nz8 == '0' ? 'checked' : ''%> > Zero 
         <input type="radio" name="nz_8" value="d3.min(data8, function (d) { return +d.value; })" onchange="this.form.submit()" <%= nz8 != '0' ? 'checked' : ''%> > Min 
   </form>
