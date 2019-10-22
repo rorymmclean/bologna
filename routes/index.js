@@ -62,6 +62,30 @@ if (typeof metrics7 == 'undefined') {
 if (typeof metrics8 == 'undefined') {
   var metrics8 = 'None'
 }
+if (typeof nz1 == 'undefined') {
+  var nz1 = '0'
+}
+if (typeof nz2 == 'undefined') {
+  var nz2 = '0'
+}
+if (typeof nz3 == 'undefined') {
+  var nz3 = '0'
+}
+if (typeof nz4 == 'undefined') {
+  var nz4 = '0'
+}
+if (typeof nz5 == 'undefined') {
+  var nz5 = '0'
+}
+if (typeof nz6 == 'undefined') {
+  var nz6 = '0'
+}
+if (typeof nz7 == 'undefined') {
+  var nz7 = '0'
+}
+if (typeof nz8 == 'undefined') {
+  var nz8 = '0'
+}
 if (typeof serverlist1 == 'undefined') {
   var serverlist1 = ''
 }
@@ -437,6 +461,14 @@ router.get('/', function (req, res) {
      spinner6: spinner6,
      spinner7: spinner7,
      spinner8: spinner8,
+     nz1: nz1,
+     nz2: nz2,
+     nz3: nz3,
+     nz4: nz4,
+     nz5: nz5,
+     nz6: nz6,
+     nz7: nz7,
+     nz8: nz8,
      myrefresh: myrefresh,
      winternet: winternet
    })
@@ -451,6 +483,7 @@ router.get('/', function (req, res) {
 })
 
 router.post('/', function (req, res) {
+  console.log(req.body)
   if (typeof req.body.frddl !== 'undefined') {
     drf = req.body.frddl
   }
@@ -528,6 +561,38 @@ router.post('/', function (req, res) {
   if (typeof req.body.server8 !== 'undefined') {
     server8 = req.body.server8
     spinner8 = 'visible'
+  }
+  if (typeof req.body.nz_1 !== 'undefined') {
+    nz1 = req.body.nz_1
+    spinner1 = 'visible'
+  }
+  if (typeof req.body.nz_2 !== 'undefined') {
+    nz2 = req.body.nz_2
+    spinner2 = 'visible'
+  }
+  if (typeof req.body.nz_3 !== 'undefined') {
+    nz3 = req.body.nz_3
+    spinner3 = 'visible'
+  }
+  if (typeof req.body.nz_4 !== 'undefined') {
+    nz4 = req.body.nz_4
+    spinner4 = 'visible'
+  }
+  if (typeof req.body.nz_5 !== 'undefined') {
+    nz5 = req.body.nz_5
+    spinner5 = 'visible'
+  }
+  if (typeof req.body.nz_6 !== 'undefined') {
+    nz6 = req.body.nz_6
+    spinner6 = 'visible'
+  }
+  if (typeof req.body.nz_7 !== 'undefined') {
+    nz7 = req.body.nz_7
+    spinner7 = 'visible'
+  }
+  if (typeof req.body.nz_8 !== 'undefined') {
+    nz8 = req.body.nz_8
+    spinner7 = 'visible'
   }
   res.redirect('/')
 })

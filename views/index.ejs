@@ -97,8 +97,10 @@ Refresh Rate:
       <option value='BSWx3' <%= metric1 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
       <option value='Await3' <%= metric1 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
       <option value='Util3' <%= metric1 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
-    </select>
-  </form>    
+    </select>&nbsp;
+    <input type="radio" name="nz_1" value="0" onchange="this.form.submit()" <%= nz1 == '0' ? 'checked' : ''%> > Zero 
+    <input type="radio" name="nz_1" value="d3.min(data1, function (d) { return +d.value; })" onchange="this.form.submit()" <%= nz1 != '0' ? 'checked' : ''%> > Min 
+</form>    
   <div id="graph_1_container" <%- metric1 == 'None' ? 'style="display:none;"' : '' %> > 
     <div id="graph_1_graph" > 
       <div ID="graph_1_spinner" class=<%= spinner1 %> >
@@ -162,7 +164,9 @@ Refresh Rate:
         <option value='BSWx3' <%= metric2 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
         <option value='Await3' <%= metric2 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
         <option value='Util3' <%= metric2 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
-        </select>
+      </select>&nbsp;
+      <input type="radio" name="nz_2" value="0" onchange="this.form.submit()" <%= nz2 == '0' ? 'checked' : ''%> > Zero 
+      <input type="radio" name="nz_2" value="d3.min(data2, function (d) { return +d.value; })" onchange="this.form.submit()" <%= nz2 != '0' ? 'checked' : ''%> > Min 
     </form>
     <div id="graph_2_container" <%- metric2 == 'None' ? 'style="display:none;"' : '' %> > 
       <div id="graph_2_graph" > 
@@ -227,8 +231,10 @@ Refresh Rate:
         <option value='BSWx3' <%= metric3 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
         <option value='Await3' <%= metric3 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
         <option value='Util3' <%= metric3 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
-        </select>
-  </form>
+      </select>&nbsp;
+      <input type="radio" name="nz_3" value="0" onchange="this.form.submit()" <%= nz3 == '0' ? 'checked' : ''%> > Zero 
+      <input type="radio" name="nz_3" value="d3.min(data3, function (d) { return +d.value; })" onchange="this.form.submit()" <%= nz3 != '0' ? 'checked' : ''%> > Min 
+    </form>
   <div id="graph_3_container" <%- metric3 == 'None' ? 'style="display:none;"' : '' %> > 
     <div id="graph_3_graph" > 
       <div ID="graph_3_spinner" class=<%= spinner3 %> >
@@ -292,8 +298,10 @@ Refresh Rate:
         <option value='BSWx3' <%= metric4 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
         <option value='Await3' <%= metric4 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
         <option value='Util3' <%= metric4 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
-        </select>
-  </form>
+      </select>&nbsp;
+      <input type="radio" name="nz_4" value="0" onchange="this.form.submit()" <%= nz4 == '0' ? 'checked' : ''%> > Zero 
+      <input type="radio" name="nz_4" value="d3.min(data4, function (d) { return +d.value; })" onchange="this.form.submit()" <%= nz4 != '0' ? 'checked' : ''%> > Min 
+    </form>
   <div id="graph_4_container" <%- metric4 == 'None' ? 'style="display:none;"' : '' %> > 
     <div id="graph_4_graph" > 
       <div ID="graph_4_spinner" class=<%= spinner4 %> >
@@ -357,8 +365,10 @@ Refresh Rate:
         <option value='BSWx3' <%= metric5 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
         <option value='Await3' <%= metric5 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
         <option value='Util3' <%= metric5 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
-        </select>
-  </form>
+      </select>&nbsp;
+      <input type="radio" name="nz_5" value="0" onchange="this.form.submit()" <%= nz5 == '0' ? 'checked' : ''%> > Zero 
+      <input type="radio" name="nz_5" value="d3.min(data5, function (d) { return +d.value; })" onchange="this.form.submit()" <%= nz5 != '0' ? 'checked' : ''%> > Min 
+    </form>
   <div id="graph_5_container" <%- metric5 == 'None' ? 'style="display:none;"' : '' %> > 
     <div id="graph_5_graph" > 
       <div ID="graph_5_spinner" class=<%= spinner5 %> >
@@ -422,8 +432,10 @@ Refresh Rate:
         <option value='BSWx3' <%= metric6 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
         <option value='Await3' <%= metric6 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
         <option value='Util3' <%= metric6 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
-        </select>
-  </form>
+      </select>&nbsp;
+      <input type="radio" name="nz_6" value="0" onchange="this.form.submit()" <%= nz6 == '0' ? 'checked' : ''%> > Zero 
+      <input type="radio" name="nz_6" value="d3.min(data6, function (d) { return +d.value; })" onchange="this.form.submit()" <%= nz6 != '0' ? 'checked' : ''%> > Min 
+    </form>
   <div id="graph_6_container" <%- metric6 == 'None' ? 'style="display:none;"' : '' %> > 
     <div id="graph_6_graph" > 
       <div ID="graph_6_spinner" class=<%= spinner6 %> >
@@ -487,9 +499,10 @@ Refresh Rate:
         <option value='BSWx3' <%= metric7 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
         <option value='Await3' <%= metric7 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
         <option value='Util3' <%= metric7 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
-        </select>
-    - nz
-  </form>
+      </select>&nbsp;
+      <input type="radio" name="nz_7" value="0" onchange="this.form.submit()" <%= nz7 == '0' ? 'checked' : ''%> > Zero 
+      <input type="radio" name="nz_7" value="d3.min(data7, function (d) { return +d.value; })" onchange="this.form.submit()" <%= nz7 != '0' ? 'checked' : ''%> > Min 
+</form>
   <div id="graph_7_container" <%- metric7 == 'None' ? 'style="display:none;"' : '' %> > 
     <div id="graph_7_graph" > 
       <div ID="graph_7_spinner" class=<%= spinner7 %> >
@@ -553,8 +566,9 @@ Refresh Rate:
         <option value='BSWx3' <%= metric8 == 'BSWx3' ? 'selected' : ''%>>Disk 3 - Bytes/Sec Writes</option>
         <option value='Await3' <%= metric8 == 'Await3' ? 'selected' : ''%>>Disk 3 - Await Time </option>
         <option value='Util3' <%= metric8 == 'Util3' ? 'selected' : ''%>>Disk 3 - % CPU Time</option>
-        </select>
-    - nz
+        </select>&nbsp;
+        <input type="radio" name="nz_8" value="0" onchange="this.form.submit()" <%= nz8 == '0' ? 'checked' : ''%> > Zero 
+        <input type="radio" name="nz_8" value="d3.min(data8, function (d) { return +d.value; })" onchange="this.form.submit()" <%= nz8 != '0' ? 'checked' : ''%> > Min 
   </form>
   <div id="graph_8_container" <%- metric8 == 'None' ? 'style="display:none;"' : '' %> > 
     <div id="graph_8_graph" > 
@@ -684,7 +698,7 @@ Refresh Rate:
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, d3.max(data1, function (d) { return +d.value; })])
+    .domain([<%- nz1 %>, d3.max(data1, function (d) { return +d.value; })])
     .range([height, 0]);
   yAxis = svg1.append("g")
     .call(d3.axisLeft(y));
@@ -719,7 +733,7 @@ svg1.append("path")
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, d3.max(data2, function (d) { return +d.value; })])
+    .domain([<%- nz2 %>, d3.max(data2, function (d) { return +d.value; })])
     .range([height, 0]);
   yAxis = svg2.append("g")
     .call(d3.axisLeft(y));
@@ -754,7 +768,7 @@ svg1.append("path")
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, d3.max(data3, function (d) { return +d.value; })])
+    .domain([<%- nz3 %>, d3.max(data3, function (d) { return +d.value; })])
     .range([height, 0]);
   yAxis = svg3.append("g")
     .call(d3.axisLeft(y));
@@ -789,7 +803,7 @@ svg1.append("path")
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, d3.max(data4, function (d) { return +d.value; })])
+    .domain([<%- nz4 %>, d3.max(data4, function (d) { return +d.value; })])
     .range([height, 0]);
   yAxis = svg4.append("g")
     .call(d3.axisLeft(y));
@@ -824,7 +838,7 @@ svg1.append("path")
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, d3.max(data5, function (d) { return +d.value; })])
+    .domain([<%- nz5 %>, d3.max(data5, function (d) { return +d.value; })])
     .range([height, 0]);
   yAxis = svg5.append("g")
     .call(d3.axisLeft(y));
@@ -859,7 +873,7 @@ svg1.append("path")
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, d3.max(data6, function (d) { return +d.value; })])
+    .domain([<%- nz6 %>, d3.max(data6, function (d) { return +d.value; })])
     .range([height, 0]);
   yAxis = svg6.append("g")
     .call(d3.axisLeft(y));
@@ -894,7 +908,7 @@ svg1.append("path")
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([d3.min(data7, function (d) { return +d.value; }), 
+    .domain([<%- nz7 %>, 
              d3.max(data7, function (d) { return +d.value; })])
     .range([height, 0]);
   yAxis = svg7.append("g")
@@ -930,8 +944,7 @@ svg1.append("path")
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([d3.min(data8, function (d) { return +d.value; }), 
-             d3.max(data8, function (d) { return +d.value; })])
+    .domain([<%- nz8 %>,d3.max(data8, function (d) { return +d.value; })])
     .range([height, 0]);
   yAxis = svg8.append("g")
     .call(d3.axisLeft(y));
