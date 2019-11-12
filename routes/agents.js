@@ -9,6 +9,7 @@ var max2 = 0
 var max3 = 0
 var max4 = 0
 var max5 = 0
+var max6 = 0
 
 function randomInt (low, high) {
   return Math.floor(Math.random() * (high - low) + low)
@@ -20,6 +21,7 @@ router.get('/', function (req, res) {
   var pcount3 = 0
   var pcount4 = 0
   var pcount5 = 0
+  var pcount6 = 0
   si.processes()
     .then(data => {
       var dataf =
@@ -44,6 +46,9 @@ router.get('/', function (req, res) {
             break;
           case '5':
             pcount5 += 1
+            break;
+          case '6':
+            pcount6 += 1
           } 
       }
       res.render('agents', {
@@ -53,7 +58,8 @@ router.get('/', function (req, res) {
         pcount2: pcount2,
         pcount3: pcount3,
         pcount4: pcount4,
-        pcount5: pcount5
+        pcount5: pcount5,
+        pcount6: pcount6
       })
     })
 })
@@ -84,6 +90,9 @@ router.post('/', function (req, res) {
           break;
         case '5':
           max5 = dataf[i].pid
+          break;
+        case '6':
+          max6 = dataf[i].pid
         } 
     }  
     console.log(max1+'/'+max2+'/'+max3+'/'+max4+'/'+max5)
@@ -150,6 +159,16 @@ router.post('/', function (req, res) {
             { stdio: [null, process.stdout, process.stderr] }
           )
         })
+    }
+    if (typeof req.body['up6.x'] !== 'undefined') { 
+      spawn.spawn('node', ['test_6.js', randomInt(1000000, 10000000)], {
+          detached: true }
+      )
+    }
+    if (typeof req.body['down6.x'] !== 'undefined') {
+      spawn.spawnSync('kill', [max6],
+        { stdio: [null, process.stdout, process.stderr] }
+      )
     }
     //sleep(1000)
     res.redirect('/agents')
