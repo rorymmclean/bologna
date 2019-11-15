@@ -6,42 +6,57 @@
 <body>
 <% include partials/menu %><div class="container-fluid justify-content-center text-center">    
     <form method="post">
-    <div class="col display-4"><h1>Slice #1 (Database Traffic)</h1>
+    <div class="col display-4"><h1>Slice #1 (Large File Copy)</h1>
+        <div class="font-weight-bold">
+            <input type=image name="up7" id="up7" src="images/triangle_up.png" width=50 height=50 onchange="this.form.submit()">
+            <%= pcount7 %>
+            <input <%= pcount7 == '0' ? 'class=invisible' : ''%> type=image name="down7" id="down7" src="images/triangle_down.png" width=50 height=50 onchange="this.form.submit()">
+        </div>    
+    </div>
+    <div class="col display-4"><h1>Slice #2 (Small File Copy)</h1>
+        <div class="font-weight-bold">
+            <input type=image name="up8" id="up8" src="images/triangle_up.png" width=50 height=50 onchange="this.form.submit()">
+            <%= pcount8 %>
+            <input <%= pcount8 == '0' ? 'class=invisible' : ''%> type=image name="down8" id="down8" src="images/triangle_down.png" width=50 height=50 onchange="this.form.submit()">
+        </div>    
+    </div>
+                    
+    <div class="col display-4"><h1>Slice #3 (Database Traffic)</h1>
         <div class="font-weight-bold">
             <input type=image name="up1" id="up1" src="images/triangle_up.png" width=50 height=50 onchange="this.form.submit()">
             <%= pcount1 %>
             <input <%= pcount1 == '0' ? 'class=invisible' : ''%> type=image name="down1" id="down1" src="images/triangle_down.png" width=50 height=50 onchange="this.form.submit()">
         </div>    
     </div>
-    <div class="col display-4"><h1>Slice #2 (Web App Traffic)</h1>
+    <div class="col display-4"><h1>Slice #4 (Web App Traffic)</h1>
         <div class="font-weight-bold">
             <input type=image name="up2" id="up2" src="images/triangle_up.png" width=50 height=50 onchange="this.form.submit()">
             <%= pcount2 %>
             <input <%= pcount2 == '0' ? 'class=invisible' : ''%> type=image name="down2" id="down2" src="images/triangle_down.png" width=50 height=50 onchange="this.form.submit()">
         </div>
     </div>
-    <div class="col display-4"><h1>Slice #3 (Sustained Read)</h1>
+    <div class="col display-4"><h1>Slice #5 (Sustained Read)</h1>
         <div class="font-weight-bold">
             <input type=image name="up3" id="up3" src="images/triangle_up.png" width=50 height=50 onchange="this.form.submit()">
             <%= pcount3 %>
             <input <%= pcount3 == '0' ? 'class=invisible' : ''%> type=image name="down3" id="down3" src="images/triangle_down.png" width=50 height=50 onchange="this.form.submit()">
         </div>    
     </div>
-    <div class="col display-4"><h1>Slice #4 (CPU Intensive)</h1>
+    <div class="col display-4"><h1>Slice #6 (CPU Intensive)</h1>
         <div class="font-weight-bold">
             <input type=image name="up4" id="up4" src="images/triangle_up.png" width=50 height=50 onchange="this.form.submit()">
             <%= pcount4 %>
             <input <%= pcount4 == '0' ? 'class=invisible' : ''%> type=image name="down4" id="down4" src="images/triangle_down.png" width=50 height=50 onchange="this.form.submit()">
         </div>    
     </div>
-    <div class="col display-4"><h1>Slice #5 (Internet Intensive)</h1>
+    <div class="col display-4"><h1>Slice #7 (Internet Intensive)</h1>
         <div class="font-weight-bold">
             <input type=image name="up5" id="up5" src="images/triangle_up.png" width=50 height=50 onchange="this.form.submit()">
             <%= pcount5 %>
             <input <%= pcount5 == '0' ? 'class=invisible' : ''%> type=image name="down5" id="down5" src="images/triangle_down.png" width=50 height=50 onchange="this.form.submit()">
         </div>    
-    </div>
-    <div class="col display-4"><h1>Slice #6 (Sustained Write)</h1>
+    </div>    
+    <div class="col display-4"><h1>Slice #8 (Sustained Write)</h1>
         <div class="font-weight-bold">
             <input type=image name="up6" id="up6" src="images/triangle_up.png" width=50 height=50 onchange="this.form.submit()">
             <%= pcount6 %>

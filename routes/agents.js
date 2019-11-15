@@ -10,6 +10,8 @@ var max3 = 0
 var max4 = 0
 var max5 = 0
 var max6 = 0
+var max7 = 0
+var max8 = 0
 
 function randomInt (low, high) {
   return Math.floor(Math.random() * (high - low) + low)
@@ -22,6 +24,8 @@ router.get('/', function (req, res) {
   var pcount4 = 0
   var pcount5 = 0
   var pcount6 = 0
+  var pcount7 = 0
+  var pcount8 = 0
   si.processes()
     .then(data => {
       var dataf =
@@ -49,6 +53,12 @@ router.get('/', function (req, res) {
             break;
           case '6':
             pcount6 += 1
+            break;
+          case '7':
+            pcount7 += 1
+            break;
+          case '8':
+            pcount8 += 1
           } 
       }
       res.render('agents', {
@@ -59,7 +69,9 @@ router.get('/', function (req, res) {
         pcount3: pcount3,
         pcount4: pcount4,
         pcount5: pcount5,
-        pcount6: pcount6
+        pcount6: pcount6,
+        pcount7: pcount7,
+        pcount8: pcount8
       })
     })
 })
@@ -93,6 +105,12 @@ router.post('/', function (req, res) {
           break;
         case '6':
           max6 = dataf[i].pid
+          break;
+        case '7':
+          max7 = dataf[i].pid
+          break;
+        case '8':
+          max8 = dataf[i].pid
         } 
     }  
     console.log(max1+'/'+max2+'/'+max3+'/'+max4+'/'+max5)
@@ -167,6 +185,26 @@ router.post('/', function (req, res) {
     }
     if (typeof req.body['down6.x'] !== 'undefined') {
       spawn.spawnSync('kill', [max6],
+        { stdio: [null, process.stdout, process.stderr] }
+      )
+    }
+    if (typeof req.body['up7.x'] !== 'undefined') { 
+      spawn.spawn('node', ['test_7.js', randomInt(1000000, 10000000)], {
+          detached: true }
+      )
+    }
+    if (typeof req.body['down7.x'] !== 'undefined') {
+      spawn.spawnSync('kill', [max7],
+        { stdio: [null, process.stdout, process.stderr] }
+      )
+    }
+    if (typeof req.body['up8.x'] !== 'undefined') { 
+      spawn.spawn('node', ['test_8.js', randomInt(1000000, 10000000)], {
+          detached: true }
+      )
+    }
+    if (typeof req.body['down8.x'] !== 'undefined') {
+      spawn.spawnSync('kill', [max8],
         { stdio: [null, process.stdout, process.stderr] }
       )
     }
