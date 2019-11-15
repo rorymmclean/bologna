@@ -21,7 +21,7 @@ if (process.env.SB_IP) {
   redisIP = process.env.sb_ip
 }
 
-var stats_wait = 1
+var stats_wait = 10
 if (process.env.SB_STATS) {
   stats_wait = process.env.SB_STATS
 } else if (process.env.sb_stats) {
