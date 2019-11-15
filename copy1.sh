@@ -1,0 +1,1 @@
+ls /mnt/mnt1/master_s | while read FILENAME; do cp -a -- "/mnt/mnt1/master_s/$FILENAME" "/mnt/mnt2/temp_$1_$FILENAME"; done
