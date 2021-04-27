@@ -21,7 +21,7 @@
     "morgan": "~1.9.1",
     "promise": "^8.0.3",
     "randomstring": "^1.1.5",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "request": "^2.88.0",
     "standard": "^14.3.1",
     "sync-request": "^6.1.0",
